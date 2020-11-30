@@ -37,9 +37,7 @@ namespace TimesheetLaikas.Models
         [DisplayName("Address")]
         public string ADDRESS { get; set; }
 
-        [PersonalData]
-
-
+        
         [PersonalData]
         [DisplayName("City")]
         public string CITY { get; set; }

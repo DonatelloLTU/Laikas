@@ -29,6 +29,21 @@ namespace TimesheetLaikas.Models
         public virtual ICollection<Employee> Employees { get; set; }
     }
 
+    public class Division : EntityBase
+    {
+        [Required]
+        [DisplayName("Division Name")]
+        public String DivisionName { get; set; }
+
+        [DisplayName("Division Chair")]
+        public String DivsionChairId { get; set; }
+
+        [ForeignKey(nameof(DivsionChairId))]
+        public Employee Employee { get; set; }
+
+        public virtual ICollection<Department> Departments { get; set; }
+    }
+
     public class DepartmentsInDivision
     {
         public int DeptId { get; set; }

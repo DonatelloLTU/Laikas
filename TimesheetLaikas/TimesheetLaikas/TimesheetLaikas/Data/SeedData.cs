@@ -27,8 +27,9 @@ namespace TimesheetLaikas.Data
 
             string Admin = "Admin";
             string HR = "HR";
-            string STEMProfessor = "STEM Professor";
+            string RegularEmployee = "Regular Employee";
             string Faculty = "Faculty";
+            string Supervisor = "Supervisor";
 
             string password = "P@$$w0rd";
 
@@ -38,22 +39,19 @@ namespace TimesheetLaikas.Data
 
                 {
                     Name = Admin,
-
-                    DepartmentId = 1,
                 };
 
                 await roleManager.CreateAsync(admin);
             }
-            if (await roleManager.FindByNameAsync(STEMProfessor) == null)
+            if (await roleManager.FindByNameAsync(RegularEmployee) == null)
             {
-                var stemprofessor = new Roles
+                var employee = new Roles
 
                 {
-                    Name = STEMProfessor,
-                    DepartmentId = 2,
+                    Name = Faculty,
                 };
 
-                await roleManager.CreateAsync(stemprofessor);
+                await roleManager.CreateAsync(employee);
             }
 
             if (await roleManager.FindByNameAsync(HR) == null)
@@ -62,9 +60,18 @@ namespace TimesheetLaikas.Data
 
                 {
                     Name = HR,
-                    DepartmentId = 9,
                 };
                 await roleManager.CreateAsync(hr);
+            }
+
+            if (await roleManager.FindByNameAsync(Supervisor) == null)
+            {
+                var supervisor = new Roles
+
+                {
+                    Name = Supervisor,
+                };
+                await roleManager.CreateAsync(supervisor);
             }
 
             if (await userManager.FindByNameAsync("root@admin.com") == null)
@@ -78,9 +85,10 @@ namespace TimesheetLaikas.Data
                     ADDRESS = "123 Admin Way",
                     CITY = "Parkersburg",
                     ZIPCODE = "26105",
-                    State = States.WestVirginia,
-                    EMP_PHONE = "6902341234",
+                    
+                    PhoneNumber = "6902341234",
                     Payrate = 0,
+                    DepartmentId = 1,
                 };
 
                 var result = await userManager.CreateAsync(user);
@@ -89,7 +97,7 @@ namespace TimesheetLaikas.Data
                     await userManager.AddPasswordAsync(user, password);
                     await userManager.AddToRoleAsync(user, Admin);
                 }
-                adminId1 = user.Id;
+                Admin = user.Id;
             }
 
             if (await userManager.FindByNameAsync("hr@wvup.edu") == null)
@@ -103,9 +111,10 @@ namespace TimesheetLaikas.Data
                     ADDRESS = "300 Campus Drive",
                     CITY = "Parkersburg",
                     ZIPCODE = "26105",
-                    State = States.WestVirginia,
-                    EMP_PHONE = "3044248000",
+                  
+                    PhoneNumber = "3044248000",
                     Payrate = 20.00M,
+                    DepartmentId = 8,
                 };
 
                 var result = await userManager.CreateAsync(user);

@@ -22,17 +22,21 @@ namespace TimesheetLaikas.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<College>().HasData(
-                         new College
-                         {
-                             Id = 1,
-                             College_Name = "Default College Name",
-                             State = States.WestVirginia
-                         }
+            
 
-                     );
+            modelBuilder.Entity<Division>().HasData(
 
-
+               new Division { Id = 1, DivisionName = "Admin" },
+               new Division { Id = 2, DivisionName = "STEM" },
+               new Division { Id = 3, DivisionName = "Art Department" },
+               new Division { Id = 4, DivisionName = "Business, Account, and Public Service" },
+               new Division { Id = 5, DivisionName = "Education" },
+               new Division { Id = 6, DivisionName = "Health Sciences Division" },
+               new Division { Id = 7, DivisionName = "Humanities, Fine Arts, and Social Services" },
+               new Division { Id = 8, DivisionName = "Campus Security" },
+               new Division { Id = 9, DivisionName = "Human Resources" },
+               new Division { Id = 10, DivisionName = "General Staff" }
+         );
 
             modelBuilder.Entity<Department>()
           .HasData(
@@ -70,32 +74,29 @@ namespace TimesheetLaikas.Data
             modelBuilder.Entity<Department>()
                 .HasMany(e => e.Employees);
 
+            modelBuilder.Entity<Division>()
+                .HasMany(d => d.Departments)
+                .WithOne(e => e.Division);
 
             modelBuilder.Entity<Payperiod>()
                 .HasMany(c => c.TimeSheetsForPayPeriod)
                 .WithOne();
+            ;
 
-
-            modelBuilder.Entity<Timesheet>()
-           .Property(c => c.Status)
-           .HasConversion<string>();
+            
 
             modelBuilder.Entity<Roles>()
            .Property(c => c.PayPeriodDuration)
            .HasConversion<string>();
         }
 
-
+        
         public DbSet<Department> Department { get; set; }
+        public DbSet<Division> Division { get; set; }
         public DbSet<Timesheet> Timesheet { get; set; }
-       
-
-
+        
         public DbSet<Employee> Employee { get; set; }
-
         public DbSet<Payperiod> Payperiods { get; set; }
-
-
-
+        public DbSet<Roles> EmployeeRoles { get; set; }
     }
 }

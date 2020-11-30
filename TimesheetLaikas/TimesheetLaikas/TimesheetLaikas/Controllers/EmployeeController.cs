@@ -79,7 +79,7 @@ namespace TimesheetLaikas.Controllers
                     Email = model.Email,
                     UserName = model.Email,
                     ADDRESS = model.ADDRESS,
-                    State = model.State,
+                    
                     CITY = model.CITY,
                     ZIPCODE = model.ZIPCODE,
                     Payrate = model.Payrate,
@@ -129,7 +129,7 @@ namespace TimesheetLaikas.Controllers
                     model.ADDRESS = user.ADDRESS;
                     model.CITY = user.CITY;
                     model.ZIPCODE = user.ZIPCODE;
-                    model.State = user.State;
+             
                     model.Payrate = user.Payrate;
                     model.Password = user.Password;
                     model.ConfirmPassword = user.ConfirmPassword;
@@ -155,7 +155,7 @@ namespace TimesheetLaikas.Controllers
                     //user.RoleId = roleManager.Roles.Single(r => r.Name == userManager.GetRolesAsync(user).Result.Single()).Id;
                     user.ADDRESS = model.ADDRESS;
                     user.CITY = model.CITY;
-                    user.State = model.State;
+                  
                     user.ZIPCODE = model.ZIPCODE;
                     user.Payrate = model.Payrate;
 

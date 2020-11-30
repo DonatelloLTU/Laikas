@@ -209,7 +209,7 @@ namespace TimesheetLaikas.Controllers
                 model.PunchIn = timesheet.PunchIn;
                 model.PunchOut = timesheet.PunchOut;
                 model.TotalWorkTime = timesheet.TotalWorkTime;
-                model.StatusComments = timesheet.StatusComments;
+               
                 model.TotalPay = timesheet.TotalPay;
             }
 
@@ -236,7 +236,7 @@ namespace TimesheetLaikas.Controllers
                     timesheetEdit.PunchIn = timesheet.PunchIn;
                     timesheetEdit.PunchOut = timesheet.PunchOut;
                     timesheetEdit.EmpID = timesheet.EmpID;
-                    timesheetEdit.StatusComments = timesheet.StatusComments;
+                   
 
                     if (timesheetEdit.PunchOut != null)
                     {
