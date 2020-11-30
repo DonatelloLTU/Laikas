@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TimesheetLaikas", "TimesheetLaikas\TimesheetLaikas.vbproj", "{88210828-14EF-468D-8820-6EB2503266D2}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TimesheetLaikas.Tests", "TimesheetLaikas.Tests\TimesheetLaikas.Tests.vbproj", "{A777F8DF-2EB4-48CA-B9EF-CA8F935E29CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88210828-14EF-468D-8820-6EB2503266D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88210828-14EF-468D-8820-6EB2503266D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88210828-14EF-468D-8820-6EB2503266D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88210828-14EF-468D-8820-6EB2503266D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A777F8DF-2EB4-48CA-B9EF-CA8F935E29CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A777F8DF-2EB4-48CA-B9EF-CA8F935E29CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A777F8DF-2EB4-48CA-B9EF-CA8F935E29CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A777F8DF-2EB4-48CA-B9EF-CA8F935E29CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DDDC4A4-6341-47E2-B7E0-139AF4CC3950}
+	EndGlobalSection
+EndGlobal
