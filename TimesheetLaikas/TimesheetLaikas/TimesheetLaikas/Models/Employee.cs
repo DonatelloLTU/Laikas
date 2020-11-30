@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace WVUP_OPMS.Models
+namespace TimesheetLaikas.Models
 {
     [Table("Employee", Schema = "College")]
     public class Employee : IdentityUser
@@ -38,7 +38,7 @@ namespace WVUP_OPMS.Models
         public string ADDRESS { get; set; }
 
         [PersonalData]
-        
+
 
         [PersonalData]
         [DisplayName("City")]
