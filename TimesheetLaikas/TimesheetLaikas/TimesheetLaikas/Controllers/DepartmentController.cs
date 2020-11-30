@@ -106,7 +106,7 @@ namespace TimesheetLaikas.Controllers
             if (id != null)
             {
                 model.DeptName = department.DeptName;
-                
+
             }
 
             if (department == null)
@@ -131,7 +131,7 @@ namespace TimesheetLaikas.Controllers
                 if (departmentEdit != null)
                 {
                     departmentEdit.DeptName = department.DeptName;
-                    
+
                 }
 
                 _context.Update(departmentEdit);
