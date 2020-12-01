@@ -63,7 +63,21 @@ namespace TimesheetLaikas.Models.ViewModels
         [Display(Name = "Position")]
         public string RoleId { get; set; }
 
-        
+        [ForeignKey(nameof(RoleId))]
+        public Roles Roles
+        {
+            get; set;
+        }
+
+        [Required]
+        [DisplayName("Department")]
+        public int DepartmentId { get; set; }
+
+        [ForeignKey(nameof(DepartmentId))]
+        public Department Department { get; set; }
+
+        [NotMapped]
+        public List<SelectListItem> Departments { get; set; }
 
         [DisplayName("Pay Rate")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]

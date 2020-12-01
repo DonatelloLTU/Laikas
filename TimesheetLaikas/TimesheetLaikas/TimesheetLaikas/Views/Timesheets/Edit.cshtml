@@ -1,0 +1,75 @@
+﻿@model TimesheetLaikas.Models.Timesheet
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@inject SignInManager<Employee> SignInManager
+@inject UserManager<Employee> UserManager
+
+<h2>Edit</h2>
+
+<h4>Timesheet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="EmpID" class="control-label"></label>
+                <input asp-for="EmpID" class="form-control" disabled>
+                <span asp-validation-for="EmpID" class="text-danger"></span>
+            </div>
+
+
+            @if (User.IsInRole("HR"))
+            {
+                <div class="form-group">
+                    <label asp-for="PunchIn" class="control-label"></label>
+                    <input asp-for="PunchIn" class="form-control" />
+                    <span asp-validation-for="PunchIn" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PunchOut" class="control-label"></label>
+                    <input asp-for="PunchOut" class="form-control" />
+                    <span asp-validation-for="PunchOut" class="text-danger"></span>
+                </div>
+
+
+
+
+            }
+            else { 
+                <div class="form-group">
+                    <label asp-for="PunchIn" class="control-label"></label>
+                    <input asp-for="PunchIn" class="form-control" disabled />
+                    <span asp-validation-for="PunchIn" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="PunchOut" class="control-label"></label>
+                <input asp-for="PunchOut" class="form-control" disabled/>
+                <span asp-validation-for="PunchOut" class="text-danger"></span>
+            </div>
+
+
+
+            
+
+            <div class="form-group">
+                <label asp-for="TotalWorkTime" class="control-label"></label>
+                <input asp-for="TotalWorkTime" class="form-control" disabled />
+                <span asp-validation-for="TotalWorkTime" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

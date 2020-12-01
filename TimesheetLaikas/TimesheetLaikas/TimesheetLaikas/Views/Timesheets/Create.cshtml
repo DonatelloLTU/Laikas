@@ -1,0 +1,55 @@
+﻿@model TimesheetLaikas.Models.ViewModels.TimesheetViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Timesheet</h4>
+<hr />
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create">
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th><label asp-for="Employee.FULL_NAME" class="control-label"></label></th>
+                <th><label asp-for="PunchIn" class="control-label"></label></th>
+                <th> <label asp-for="PunchOut" class="control-label"></label></th>
+
+                <th> <label asp-for="TotalWorkTime" class="control-label"></label></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <select asp-for="EmpID" class="form-control" asp-items="ViewBag.EmpID"></select>
+                    <span asp-validation-for="EmpID" class="text-danger"></span>
+                </td>
+                <td>
+                    <input asp-for="PunchIn" class="form-control" />
+                    <span asp-validation-for="PunchIn" class="text-danger"></span>
+                </td>
+
+                <td>
+                    <input asp-for="PunchOut" class="form-control" />
+                    <span asp-validation-for="PunchOut" class="text-danger"></span>
+                </td>
+
+                <td><input asp-for="TotalWorkTime" class="form-control" disabled /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

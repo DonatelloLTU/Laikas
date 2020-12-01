@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TimesheetLaikas.Models.Timesheet>
+
+@{
+    ViewData["Title"] = "PunchIn";
+}
+
+<h2>Clock In/Out</h2>
+
+<body onload=display_ct();>
+    <h3 id='ct'></h3>
+
+
+<form asp-action="PunchIn" asp-area="/Views/Timesheets/TimePunch" asp-controller="Timesheets">
+<button class="btn btn-lg btn-success">Clock In</button>
+</form>
+<form asp-action="PunchOut" asp-area="/Views/Timesheets/TimePunch" asp-controller="Timesheets"> 
+ <button class="btn btn-lg btn-danger">Clock Out</button>
+</form>
+
+
+    </body>
+
+
+    <script type="text/javascript">
+        //Display current time on timepunch page
+    function display_c(){
+    var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('display_ct()',refresh)
+    }
+
+        function display_ct() {
+        var x = new Date()
+        document.getElementById('ct').innerHTML = x;
+        display_c();
+         }
+    </script>
+
+
+

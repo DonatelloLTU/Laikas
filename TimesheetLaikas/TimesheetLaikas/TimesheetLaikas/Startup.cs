@@ -56,7 +56,7 @@ namespace TimesheetLaikas
             services.AddIdentity<Employee, Roles>(
                options => options.Stores.MaxLengthForKeys = 128)
                .AddEntityFrameworkStores<ApplicationDbContext>()
-              // .AddDefaultUI()
+               .AddDefaultUI()
                .AddDefaultTokenProviders();
 
             services.AddMvc().AddRazorRuntimeCompilation();
