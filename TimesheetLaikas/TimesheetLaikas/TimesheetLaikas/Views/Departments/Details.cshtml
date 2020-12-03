@@ -1,0 +1,62 @@
+﻿@model TimesheetLaikas.Models.Department
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Department Directory</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Division)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Division.DivisionName)
+        </dd>
+
+    </dl>
+
+    
+<h3>List of Employees</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Employees)
+            {
+            <tr>
+
+                <td>
+                    @item.FULL_NAME
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.Email
+                </td>
+
+            </tr>
+                }
+                </tbody>
+        </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

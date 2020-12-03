@@ -19,23 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.PunchOut)
             </th>
-            <th>
-              
-
-                <div class="col-lg-12">
-                    <div class="button-group">
-                        <form asp-action="Index" method="get">
-                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fas fa-filter"></i></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" value="Pending" name="statusString" />&nbsp;Pending</a></li>
-                                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" value="Approved" name="statusString" />&nbsp;Approved</a></li>
-                                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" value="Rejected" name="statusString" />&nbsp;Rejected</a></li>
-                                <li><input type="submit" class="btn btn-primary" value="Apply filter" /></li>
-                            </ul>
-                        </form>
-                    </div>
-                </div>
-            </th>
+           
            
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Employee)</a>

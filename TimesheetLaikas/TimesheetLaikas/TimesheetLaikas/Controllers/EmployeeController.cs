@@ -33,6 +33,7 @@ namespace TimesheetLaikas.Controllers
         {
             ViewData["LNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lname_desc" : "";
             ViewData["FNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "fname_desc" : "";
+            ViewData["DepartmentParm"] = String.IsNullOrEmpty(sortOrder) ? "dept_desc" : "";
             var employees = from e in _context.Employee
                             select e;
 
@@ -44,6 +45,10 @@ namespace TimesheetLaikas.Controllers
 
                 case "fname_desc":
                     employees = employees.OrderByDescending(e => e.EMP_FNAME);
+                    break;
+
+                case "dept_desc":
+                    employees = employees.OrderByDescending(e => e.Department.DeptName);
                     break;
             }
 
@@ -62,7 +67,7 @@ namespace TimesheetLaikas.Controllers
                 Text = r.Name,
                 Value = r.Id
             }).ToList();
-
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "DeptName");
             return View("AddUser", model);
         }
 
@@ -79,13 +84,13 @@ namespace TimesheetLaikas.Controllers
                     Email = model.Email,
                     UserName = model.Email,
                     ADDRESS = model.ADDRESS,
-                    
                     CITY = model.CITY,
                     ZIPCODE = model.ZIPCODE,
                     Payrate = model.Payrate,
                     Password = model.Password,
                     ConfirmPassword = model.ConfirmPassword,
                     PhoneNumber = model.EMP_PHONE,
+                    DepartmentId = model.DepartmentId,
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -101,6 +106,7 @@ namespace TimesheetLaikas.Controllers
                     }
                 }
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "DeptName", model.DepartmentId);
             return View(model);
         }
 
@@ -129,12 +135,13 @@ namespace TimesheetLaikas.Controllers
                     model.ADDRESS = user.ADDRESS;
                     model.CITY = user.CITY;
                     model.ZIPCODE = user.ZIPCODE;
-             
                     model.Payrate = user.Payrate;
                     model.Password = user.Password;
                     model.ConfirmPassword = user.ConfirmPassword;
+                    model.DepartmentId = user.DepartmentId;
                 }
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "DeptName", model.DepartmentId);
             return View("Edit", model);
         }
 
@@ -152,10 +159,9 @@ namespace TimesheetLaikas.Controllers
                     user.EMP_LNAME = model.EMP_LNAME;
                     user.UserName = model.Email;
                     user.PhoneNumber = model.EMP_PHONE;
-                    //user.RoleId = roleManager.Roles.Single(r => r.Name == userManager.GetRolesAsync(user).Result.Single()).Id;
                     user.ADDRESS = model.ADDRESS;
                     user.CITY = model.CITY;
-                  
+                    user.DepartmentId = model.DepartmentId;
                     user.ZIPCODE = model.ZIPCODE;
                     user.Payrate = model.Payrate;
 
@@ -183,7 +189,7 @@ namespace TimesheetLaikas.Controllers
                     }
                 }
             }
-
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "DeptName", model.DepartmentId);
             return View(model);
         }
     }

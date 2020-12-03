@@ -5,12 +5,7 @@
 <body class="bg-light">
     <form asp-action="AddUser" role="form">
 
-        <div class="container">
-            <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="~/images/West_Virginia_University_at_Parkersburg_seal.png" alt="" width="100" height="100    ">
-                <h2>Employee Registration</h2>
-                <p class="lead">Please fill out the information below to create an account for an employee.</p>
-            </div>
+        
 
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Employee Information</h4>
@@ -65,7 +60,7 @@
 
                 <div class="mb-3">
                     <label asp-for="CITY"></label>
-                    <input asp-for="CITY" class="form-control" placeholder="Phone Number">
+                    <input asp-for="CITY" class="form-control" placeholder="City">
                     <span asp-validation-for="CITY" class="text-danger"></span>
                 </div>
 

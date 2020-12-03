@@ -106,13 +106,13 @@ namespace TimesheetLaikas.Data
                 {
                     UserName = "hr@wvup.edu",
                     Email = "hr@wvup.edu",
-                    EMP_FNAME = "John",
-                    EMP_LNAME = "Doe",
-                    ADDRESS = "300 Campus Drive",
+                    EMP_FNAME = "Human",
+                    EMP_LNAME = "Resources",
+                    ADDRESS = "123 Campus",
                     CITY = "Parkersburg",
-                    ZIPCODE = "26105",
+                    ZIPCODE = "26104",
                   
-                    PhoneNumber = "3044248000",
+                    PhoneNumber = "12300012345",
                     Payrate = 20.00M,
                     DepartmentId = 8,
                 };

@@ -22,7 +22,7 @@ namespace TimesheetLaikas.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            
+
 
             modelBuilder.Entity<Division>().HasData(
 
@@ -83,18 +83,17 @@ namespace TimesheetLaikas.Data
                 .WithOne();
             ;
 
-            
+
 
             modelBuilder.Entity<Roles>()
            .Property(c => c.PayPeriodDuration)
            .HasConversion<string>();
         }
 
-        
+
         public DbSet<Department> Department { get; set; }
         public DbSet<Division> Division { get; set; }
         public DbSet<Timesheet> Timesheet { get; set; }
-        
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Payperiod> Payperiods { get; set; }
         public DbSet<Roles> EmployeeRoles { get; set; }

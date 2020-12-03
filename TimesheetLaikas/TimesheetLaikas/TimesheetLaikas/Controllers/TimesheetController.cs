@@ -209,7 +209,6 @@ namespace TimesheetLaikas.Controllers
                 model.PunchIn = timesheet.PunchIn;
                 model.PunchOut = timesheet.PunchOut;
                 model.TotalWorkTime = timesheet.TotalWorkTime;
-               
                 model.TotalPay = timesheet.TotalPay;
             }
 

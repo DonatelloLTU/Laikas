@@ -1,0 +1,48 @@
+﻿@model TimesheetLaikas.Models.Payperiod
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payperiod</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalHoursWorked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalHoursWorked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OverTimeWorked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OverTimeWorked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeStamp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeSheetsForPayPeriod) |
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeSheetsForPayPeriod) |
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -46,12 +46,8 @@ namespace TimesheetLaikas
                 options.SlidingExpiration = true;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
 
             services.AddIdentity<Employee, Roles>(
                options => options.Stores.MaxLengthForKeys = 128)

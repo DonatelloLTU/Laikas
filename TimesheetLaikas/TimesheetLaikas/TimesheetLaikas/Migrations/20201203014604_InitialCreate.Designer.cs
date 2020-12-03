@@ -9,8 +9,8 @@ using TimesheetLaikas.Data;
 namespace TimesheetLaikas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201201004428_UpdatedMigration")]
-    partial class UpdatedMigration
+    [Migration("20201203014604_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
