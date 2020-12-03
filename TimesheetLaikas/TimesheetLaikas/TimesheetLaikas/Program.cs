@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Core;
 using TimesheetLaikas.Data;
 
 namespace TimesheetLaikas
@@ -16,8 +18,15 @@ namespace TimesheetLaikas
     {
         public static void Main(string[] args)
         {
+           
             var host = CreateWebHostBuilder(args).Build();
-
+            using (var log = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger())
+            {
+                log.Information("Hello, Serilog!");
+                log.Warning("Goodbye, Serilog.");
+            }
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -33,6 +42,10 @@ namespace TimesheetLaikas
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred creating the DB.");
                 }
+                finally
+                {
+                    Log.CloseAndFlush();
+                }
             }
 
             host.Run();
@@ -40,6 +53,13 @@ namespace TimesheetLaikas
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
+            .ConfigureLogging((ctx, builder)=>
+            {
+                builder.AddConfiguration(
+              ctx.Configuration.GetSection("Logging"));
+                builder.AddConsole();
+            })
+                    .UseSerilog()
                     .UseStartup<Startup>();
     }
 }
