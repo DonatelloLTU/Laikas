@@ -55,8 +55,11 @@ namespace TimesheetLaikas
                 WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging((ctx, builder)=>
             {
+<<<<<<< HEAD
+=======
                 //ctx.ClearProviders();
                 //ctx.AddConsole();
+>>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
                 builder.AddConfiguration(
               ctx.Configuration.GetSection("Logging"));
                 builder.AddConsole();
