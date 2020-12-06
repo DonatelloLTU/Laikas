@@ -8,15 +8,15 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PunchIn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PunchOut)
             </th>
-          
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.TotalWorkTime)
             </th>
@@ -29,24 +29,23 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PunchIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PunchOut)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalWorkTime)
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.TotalPay)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PunchIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PunchOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalWorkTime)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.TotalPay)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

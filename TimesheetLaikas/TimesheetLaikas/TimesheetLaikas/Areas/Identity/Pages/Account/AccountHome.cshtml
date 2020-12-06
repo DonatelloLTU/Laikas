@@ -1,0 +1,71 @@
+﻿@page
+@model TimesheetLaikas.Areas.Identity.Pages.Account.AccountHomeModel
+@using Microsoft.AspNetCore.Identity
+@using TimesheetLaikas.Models
+@inject SignInManager<Employee> SignInManager
+@inject UserManager<Employee> UserManager
+@{
+    ViewData["Title"] = "Profile Home";
+}
+
+
+
+
+
+<div class="container-fluid">
+
+
+
+    <div class="col-lg-9 col-md-8 col-sm-8">
+
+
+
+
+
+
+
+
+
+        <h3>Employee Information</h3>
+        <hr />
+
+        <div class="form-group">
+            <label asp-for="Profile.FirstName"></label>
+            @Html.DisplayFor(model => model.Profile.FirstName)
+        </div>
+        <div class="form-group">
+            <label asp-for="Profile.LastName"></label>:
+            @Html.DisplayFor(model => model.Profile.LastName)
+
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Profile.Email"></label>:
+            @Html.DisplayFor(model => model.Profile.Email)
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="Profile.PhoneNumber"></label>:
+            @Html.DisplayFor(model => model.Profile.PhoneNumber)
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Profile.ADDRESS"></label>:
+            @Html.DisplayFor(model => model.Profile.ADDRESS)<br />
+            @Html.DisplayFor(model => model.Profile.ZIPCODE)
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Profile.PhoneNumber"></label>:
+            @Html.DisplayFor(model => model.Profile.PhoneNumber)
+        </div>
+
+
+
+    </div>
+    <a class="btn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-edit"></i>Edit Profile</a>
+</div>
