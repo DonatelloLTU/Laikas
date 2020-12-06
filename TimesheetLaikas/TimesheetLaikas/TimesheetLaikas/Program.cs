@@ -3,74 +3,63 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Serilog.AspNetCore;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using Microsoft.Extensions.Logging.Debug;
 using Serilog;
-using Serilog.Sinks.MSSqlServer;
-using Serilog.Formatting.Compact;
+using Serilog.Core;
 using TimesheetLaikas.Data;
-using Microsoft.AspNetCore;
+
 namespace TimesheetLaikas
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var appSettings = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
+           
+            var host = CreateWebHostBuilder(args).Build();
+            using (var log = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger())
+            {
+                log.Information("Hello, Serilog!");
+                log.Warning("Goodbye, Serilog.");
+            }
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
 
-            var logDB = @"Server=...";
-            var sinkOpts = new MSSqlServerSinkOptions { TableName = "Logs" };
-            var columnOpts = new ColumnOptions();
-
-            var log = new LoggerConfiguration()
-                .WriteTo.MSSqlServer(
-                    connectionString: logDB,
-                    sinkOptions: sinkOpts,
-                    columnOptions: columnOpts,
-                    appConfiguration: appSettings
-                ).CreateLogger();
-            var itemCount = 99;
-            for (var itemNumber = 0; itemNumber < itemCount; ++itemNumber)
-                Log.Debug("Processing item {ItemNumber} of {ItemCount}", itemNumber, itemCount);
-
-            Log.CloseAndFlush();
-            try
+                try
                 {
-                BuildWebHost(args).Run();
+                    var context = services.GetRequiredService<ApplicationDbContext>();
+
+                    SeedData.Initialize(context);
                 }
                 catch (Exception ex)
                 {
-
-                Log.Fatal(ex, "Host terminated unexpectedly");
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred creating the DB.");
                 }
                 finally
                 {
                 AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();
                 }
             }
-        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
-            .Build();
 
-        public static IWebHost BuildWebHost(string[] args) =>
+            host.Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
-          .ConfigureLogging((builder) =>
-        {
-            builder.AddSerilog();
-        })
-                    
+            .ConfigureLogging((ctx, builder)=>
+            {
+                builder.AddConfiguration(
+              ctx.Configuration.GetSection("Logging"));
+                builder.AddConsole();
+            })
                     .UseSerilog()
-                    .UseStartup<Startup>()
-                    .Build();
+                    .UseStartup<Startup>();
     }
 }
