@@ -70,14 +70,7 @@ namespace TimesheetLaikas
                 app.UseDeveloperExceptionPage();
                 logger.LogInformation("In Development.");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                //app.UseDatabaseErrorPage();
-=======
-               
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
-=======
->>>>>>> parent of bbd8f45... Revert "Serilog"
+
             }
             else
             {

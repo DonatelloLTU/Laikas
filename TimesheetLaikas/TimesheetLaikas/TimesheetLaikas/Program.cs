@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Sinks.MSSqlServer;
+//using Serilog.Sinks.MSSqlServer;
 using Serilog.Formatting.Compact;
 using Serilog.Core;
 using TimesheetLaikas.Data;
@@ -26,16 +26,16 @@ namespace TimesheetLaikas
             .Build();
             var host = CreateWebHostBuilder(args).Build();
             var logDB = @"Server=...";
-            var sinkOpts = new MSSqlServerSinkOptions { TableName = "Logs" };
-            var columnOpts = new ColumnOptions();
+            //var sinkOpts = new MSSqlServerSinkOptions { TableName = "Logs" };
+            //var columnOpts = new ColumnOptions();
 
-            var log = new LoggerConfiguration()
-                .WriteTo.MSSqlServer(
-                    connectionString: logDB,
-                    sinkOptions: sinkOpts,
-                    columnOptions: columnOpts,
-                    appConfiguration: appSettings
-                ).CreateLogger();
+            //var log = new LoggerConfiguration()
+            //    .WriteTo.MSSqlServer(
+            //        connectionString: logDB,
+            //        sinkOptions: sinkOpts,
+            //        columnOptions: columnOpts,
+            //        appConfiguration: appSettings
+            //    ).CreateLogger();
 
             Log.CloseAndFlush();
 
@@ -71,11 +71,7 @@ namespace TimesheetLaikas
                 WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging((ctx, builder)=>
             {
-<<<<<<< HEAD
-=======
-                //ctx.ClearProviders();
-                //ctx.AddConsole();
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
+
                 builder.AddConfiguration(
               ctx.Configuration.GetSection("Logging"));
                 builder.AddConsole();
