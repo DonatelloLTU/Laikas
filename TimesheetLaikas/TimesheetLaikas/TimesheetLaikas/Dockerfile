@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["TimesheetLaikas/TimesheetLaikas.csproj", "TimesheetLaikas/"]
+COPY ["TimesheetLaikas.csproj", "TimesheetLaikas/"]
 RUN dotnet restore "TimesheetLaikas/TimesheetLaikas.csproj"
 COPY . .
 WORKDIR "/src/TimesheetLaikas"
