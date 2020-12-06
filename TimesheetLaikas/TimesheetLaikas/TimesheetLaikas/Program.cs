@@ -55,6 +55,8 @@ namespace TimesheetLaikas
                 WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging((ctx, builder)=>
             {
+                //ctx.ClearProviders();
+                //ctx.AddConsole();
                 builder.AddConfiguration(
               ctx.Configuration.GetSection("Logging"));
                 builder.AddConsole();

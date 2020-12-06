@@ -68,7 +68,7 @@ namespace TimesheetLaikas
             {
                 app.UseDeveloperExceptionPage();
 
-                //app.UseDatabaseErrorPage();
+               
             }
             else
             {

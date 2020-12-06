@@ -67,6 +67,17 @@ namespace TimesheetLaikas.Controllers
             return View(await timesheets.AsNoTracking().ToListAsync());
         }
 
+        [Authorize(Roles = "Supervisor")]
+        public async Task<IActionResult> ViewDepartmentTimesheets()
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            var timepunches = from t in _context.Timesheet.Include(t => t.Employee)
+                              where currentUser.DepartmentId == t.Employee.DepartmentId
+                              select t;
+
+            return View(await timepunches.ToListAsync());
+        }
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -103,7 +114,7 @@ namespace TimesheetLaikas.Controllers
                 Timesheet timesheet = new Timesheet();
 
                 timesheet.PunchIn = DateTime.Now;
-                
+
                 timesheet.EmpID = currentUser.Id;
 
 
@@ -149,7 +160,7 @@ namespace TimesheetLaikas.Controllers
             return View();
         }
 
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TimesheetViewModel model)
@@ -163,7 +174,7 @@ namespace TimesheetLaikas.Controllers
 
                 timesheet.PunchIn = model.PunchIn;
                 timesheet.PunchOut = model.PunchOut;
-           
+
                 timesheet.EmpID = model.EmpID;
 
                 if (model.PunchOut != null)
@@ -204,7 +215,7 @@ namespace TimesheetLaikas.Controllers
 
             if (id != null)
             {
-                
+
                 model.EmpID = timesheet.EmpID;
                 model.PunchIn = timesheet.PunchIn;
                 model.PunchOut = timesheet.PunchOut;
@@ -216,7 +227,7 @@ namespace TimesheetLaikas.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["EmpID"] = new SelectList(_context.Employee, "Id", "FULL_NAME", model.EmpID);
             return View(timesheet);
         }
 
@@ -231,11 +242,11 @@ namespace TimesheetLaikas.Controllers
 
                 if (timesheetEdit != null)
                 {
-                    
+
                     timesheetEdit.PunchIn = timesheet.PunchIn;
                     timesheetEdit.PunchOut = timesheet.PunchOut;
                     timesheetEdit.EmpID = timesheet.EmpID;
-                   
+
 
                     if (timesheetEdit.PunchOut != null)
                     {
