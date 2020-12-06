@@ -18,7 +18,7 @@ namespace TimesheetLaikas
     {
         public static void Main(string[] args)
         {
-           
+
             var host = CreateWebHostBuilder(args).Build();
             using (var log = new LoggerConfiguration()
             .WriteTo.Console()
@@ -53,23 +53,9 @@ namespace TimesheetLaikas
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging((ctx, builder)=>
+            .ConfigureLogging((ctx, builder) =>
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                //ctx.ClearProviders();
-                //ctx.AddConsole();
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
-=======
-                //ctx.ClearProviders();
-                //ctx.AddConsole();
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
-=======
-                //ctx.ClearProviders();
-                //ctx.AddConsole();
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
+
                 builder.AddConfiguration(
               ctx.Configuration.GetSection("Logging"));
                 builder.AddConsole();

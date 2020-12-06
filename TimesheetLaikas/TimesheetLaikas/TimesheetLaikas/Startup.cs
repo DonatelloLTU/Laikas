@@ -68,19 +68,7 @@ namespace TimesheetLaikas
             {
                 app.UseDeveloperExceptionPage();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                //app.UseDatabaseErrorPage();
-=======
-               
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
-=======
-               
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
-=======
-               
->>>>>>> parent of 7d84655... Revert "Merge branch 'main' of https://github.com/DonatelloLTU/Laikas into main"
+
             }
             else
             {
