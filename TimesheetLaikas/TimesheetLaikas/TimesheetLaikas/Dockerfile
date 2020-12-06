@@ -22,7 +22,7 @@
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "TimesheetLaikas.dll"]
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 COPY TimesheetLaikas/*.csproj ./app/TimesheetLaikas/
 WORKDIR /app/TimeSheetLaikas
 RUN dotnet restore
@@ -30,7 +30,7 @@ RUN dotnet restore
 COPY TimesheetLaikas/. ./
 RUN dotnet publish -o out /p:PublishWithAspNetCoreTargetManifest="false"
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1 AS runtime
 ENV ASPNETCORE_URLS https://+:80/
 WORKDIR /app
 COPY --from=build /app/TimesheetLaikas/out ./
