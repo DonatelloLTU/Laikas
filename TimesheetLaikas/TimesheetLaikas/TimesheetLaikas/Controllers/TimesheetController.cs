@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using TimesheetLaikas.Data;
 using TimesheetLaikas.Models;
 using TimesheetLaikas.Models.ViewModels;
-
+using Serilog;
+using Serilog.Sinks.SystemConsole;
+using Serilog;
 namespace TimesheetLaikas.Controllers
 {
     public class TimesheetsController : Controller
@@ -18,7 +20,6 @@ namespace TimesheetLaikas.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<Employee> _userManager;
         private readonly RoleManager<Roles> _roleManager;
-
         public TimesheetsController(ApplicationDbContext context, UserManager<Employee> userManager, RoleManager<Roles> roleManager)
         {
             _userManager = userManager;
@@ -33,7 +34,6 @@ namespace TimesheetLaikas.Controllers
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
             var db = _context.Timesheet.Include(t => t.Employee);
-
             var timesheets = from t in _context.Timesheet
                              select t;
 

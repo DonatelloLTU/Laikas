@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TimesheetLaikas.Models;
+using Serilog;
 
 namespace TimesheetLaikas.Controllers
 {
@@ -20,6 +21,7 @@ namespace TimesheetLaikas.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Hello World!");
             return View();
         }
 
@@ -27,7 +29,6 @@ namespace TimesheetLaikas.Controllers
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

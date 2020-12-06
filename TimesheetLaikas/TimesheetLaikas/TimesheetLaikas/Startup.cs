@@ -13,6 +13,8 @@ using TimesheetLaikas.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TimesheetLaikas.Models;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace TimesheetLaikas
 {
@@ -48,7 +50,6 @@ namespace TimesheetLaikas
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
-
             services.AddIdentity<Employee, Roles>(
                options => options.Stores.MaxLengthForKeys = 128)
                .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -62,16 +63,17 @@ namespace TimesheetLaikas
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context, RoleManager<Roles> roleManager, UserManager<Employee> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context, RoleManager<Roles> roleManager, UserManager<Employee> userManager, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+                logger.LogInformation("In Development.");
                 //app.UseDatabaseErrorPage();
             }
             else
             {
+                logger.LogInformation("Not Development.");
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
@@ -81,7 +83,9 @@ namespace TimesheetLaikas
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseRouting();
 
+            app.UseAuthorization();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
