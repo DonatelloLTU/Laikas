@@ -34,9 +34,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:2.1 AS runtime
 ENV ASPNETCORE_URLS https://+:80/
 WORKDIR /app
 COPY --from=build /app/TimesheetLaikas/out ./
-ENTRYPOINT ["dotnet", "TimesheetLaikas.dll"](edited)
-[3:50 PM]
------Migrations.Dockerfile-----
+ENTRYPOINT ["dotnet", "TimesheetLaikas.dll"]
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 
 WORKDIR /src
