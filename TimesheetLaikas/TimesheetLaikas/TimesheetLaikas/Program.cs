@@ -53,7 +53,7 @@ namespace TimesheetLaikas
                 }
                 finally
                 {
-                    Log.CloseAndFlush();
+                AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();
                 }
             }
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
