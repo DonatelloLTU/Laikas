@@ -25,7 +25,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 COPY ["TimesheetLaikas.csproj", "./"]
 WORKDIR ./TimesheetLaikas
-RUN dotnet restore 
+RUN dotnet restore "TimesheetLaikas.csproj"
 
 COPY TimesheetLaikas/. ./
 RUN dotnet publish -o out /p:PublishWithAspNetCoreTargetManifest="false"
