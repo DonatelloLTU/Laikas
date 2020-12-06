@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  timesheetlaikas:
-    image: ${DOCKER_REGISTRY-}timesheetlaikas
-    build:
-      context: .
-      dockerfile: TimesheetLaikas/Dockerfile
