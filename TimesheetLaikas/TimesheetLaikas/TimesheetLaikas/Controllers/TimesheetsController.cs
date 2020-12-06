@@ -24,6 +24,7 @@ namespace TimesheetLaikas.Controllers
             _userManager = userManager;
             _context = context;
             _roleManager = roleManager;
+
         }
 
 
