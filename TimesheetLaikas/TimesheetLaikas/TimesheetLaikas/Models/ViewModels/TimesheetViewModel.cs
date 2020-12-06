@@ -9,24 +9,15 @@ namespace TimesheetLaikas.Models.ViewModels
 {
     public class TimesheetViewModel
     {
-        //public DateTime CurrentDate { get; set; }
-
-        public DateTime PunchIn { get; set; }
-        public DateTime? PunchOut { get; set; }
-       
-
-        public string StatusComments { get; set; }
-
         public string EmpID { get; set; }
 
         [ForeignKey(nameof(EmpID))]
         public Employee Employee { get; set; }
 
+        public DateTime PunchIn { get; set; }
+        public DateTime? PunchOut { get; set; }
         
-        public string TotalWorkTime
-        {
-            get; set;
-        }
+        public string TotalWorkTime {get; set;}
 
         public decimal? TotalPay { get; set; }
     }

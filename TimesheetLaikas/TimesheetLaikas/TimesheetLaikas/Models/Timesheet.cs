@@ -20,7 +20,7 @@ namespace TimesheetLaikas.Models
         [DisplayName("Punch Out")]
         public DateTime? PunchOut { get; set; }
 
-        
+
         public string EmpID { get; set; }
 
         [ForeignKey(nameof(EmpID))]
@@ -28,10 +28,7 @@ namespace TimesheetLaikas.Models
 
 
         [DisplayName("Total Hours Worked")]
-        public string TotalWorkTime
-        {
-            get; set;
-        }
+        public string TotalWorkTime { get; set; }
 
         [DisplayName("Total Pay")]
         public decimal? TotalPay { get; set; }
