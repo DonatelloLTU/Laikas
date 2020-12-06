@@ -9,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Sinks.MSSqlServer;
-using Serilog.Formatting.Compact;
 using Serilog.Core;
 using TimesheetLaikas.Data;
 
@@ -20,25 +18,15 @@ namespace TimesheetLaikas
     {
         public static void Main(string[] args)
         {
-            var appSettings = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
+           
             var host = CreateWebHostBuilder(args).Build();
-            var logDB = @"Server=...";
-            var sinkOpts = new MSSqlServerSinkOptions { TableName = "Logs" };
-            var columnOpts = new ColumnOptions();
-
-            var log = new LoggerConfiguration()
-                .WriteTo.MSSqlServer(
-                    connectionString: logDB,
-                    sinkOptions: sinkOpts,
-                    columnOptions: columnOpts,
-                    appConfiguration: appSettings
-                ).CreateLogger();
-
-            Log.CloseAndFlush();
-
+            using (var log = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger())
+            {
+                log.Information("Hello, Serilog!");
+                log.Warning("Goodbye, Serilog.");
+            }
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -62,11 +50,7 @@ namespace TimesheetLaikas
 
             host.Run();
         }
-        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
-            .Build();
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging((ctx, builder)=>
@@ -76,7 +60,6 @@ namespace TimesheetLaikas
                 builder.AddConfiguration(
               ctx.Configuration.GetSection("Logging"));
                 builder.AddConsole();
-                builder.AddSerilog();
             })
                     .UseSerilog()
                     .UseStartup<Startup>();
