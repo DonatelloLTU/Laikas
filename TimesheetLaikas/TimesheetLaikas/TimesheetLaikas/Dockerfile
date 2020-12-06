@@ -24,7 +24,7 @@
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 COPY ["TimesheetLaikas.csproj", "./"]
-WORKDIR /TimesheetLaikas
+WORKDIR ./TimesheetLaikas
 RUN dotnet restore 
 
 COPY TimesheetLaikas/. ./
