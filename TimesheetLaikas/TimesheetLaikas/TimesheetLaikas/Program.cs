@@ -44,7 +44,7 @@ namespace TimesheetLaikas
                 }
                 finally
                 {
-                AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();
+                    Log.CloseAndFlush();
                 }
             }
 
