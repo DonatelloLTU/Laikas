@@ -23,8 +23,8 @@
 #ENTRYPOINT ["dotnet", "TimesheetLaikas.dll"]
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
-COPY TimesheetLaikas/*.csproj ./app/TimesheetLaikas/
-WORKDIR /app/TimeSheetLaikas
+COPY ["TimesheetLaikas.csproj", "./"]
+WORKDIR /src
 RUN dotnet restore
 
 COPY TimesheetLaikas/. ./
