@@ -11,7 +11,6 @@ COPY ["TimesheetLaikas.csproj", "./"]
 RUN dotnet restore "./TimesheetLaikas.csproj"
 COPY . .
 WORKDIR "/src/TimesheetLaikas"
-#RUN dotnet test "TimesheetLaikas.csproj" --configuration Release --no-restore
 RUN dotnet build "TimesheetLaikas.csproj" -c Release -o /app/build
 
 FROM build AS publish
