@@ -12,7 +12,8 @@ using TimesheetLaikas.Models;
 using TimesheetLaikas.Models.ViewModels;
 using Serilog;
 using Serilog.Sinks.SystemConsole;
-using Serilog;
+using Microsoft.Extensions.Logging;
+
 namespace TimesheetLaikas.Controllers
 {
     public class TimesheetController : Controller
@@ -20,7 +21,7 @@ namespace TimesheetLaikas.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<Employee> _userManager;
         private readonly RoleManager<Roles> _roleManager;
-
+        ILogger<TimesheetController> _logger;
         public TimesheetController(ApplicationDbContext context, UserManager<Employee> userManager, RoleManager<Roles> roleManager)
         {
             _userManager = userManager;
@@ -53,7 +54,7 @@ namespace TimesheetLaikas.Controllers
                     timesheets = timesheets.OrderByDescending(t => t.PunchIn);
                     break;
             }
-
+            Log.Logger.ForContext("OtherData", "Test Data").Information("Index method called!!!");
             return View(await timesheets.AsNoTracking().ToListAsync());
         }
 
