@@ -70,7 +70,6 @@ namespace TimesheetLaikas
                 app.UseDeveloperExceptionPage();
                 logger.LogInformation("In Development.");
 
-
             }
             else
             {
@@ -94,7 +93,7 @@ namespace TimesheetLaikas
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            SeedData.Initialize(context, userManager, roleManager).Wait();
+           
         }
     }
 }
