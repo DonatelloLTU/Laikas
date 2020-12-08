@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="app.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="app.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Font.Awesome" Version="5.15.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
