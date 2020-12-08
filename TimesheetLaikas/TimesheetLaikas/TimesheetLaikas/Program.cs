@@ -16,7 +16,6 @@ using TimesheetLaikas.Data;
 using Serilog.Sinks.MSSqlServer;
 using System.Collections.ObjectModel;
 using System.Data;
-using Serilog.Events;
 
 namespace TimesheetLaikas
 {
@@ -30,17 +29,26 @@ namespace TimesheetLaikas
             .Build();
             var host = CreateWebHostBuilder(args).Build();
             var logDB = @"Server=...";
-            var connectionString = @"Data Source=(local); Initial Catalog=Test;User ID=sa;Password=Passwd@12;";
-            var tableName = "Logs";
+            var columnOptions = new ColumnOptions
+            {
+                AdditionalColumns = new Collection<SqlColumn>
+    {
+        new SqlColumn
+            {ColumnName = "EnvironmentUserName", PropertyName = "UserName", DataType = SqlDbType.NVarChar, DataLength = 64},
 
-            var columnOption = new ColumnOptions();
-            columnOption.Store.Remove(StandardColumn.MessageTemplate);
+        new SqlColumn
+            {ColumnName = "UserId", DataType = SqlDbType.BigInt, NonClusteredIndex = true},
 
-            Log.Logger = new LoggerConfiguration()
-                            .MinimumLevel.Information()
-                            .MinimumLevel.Override("SerilogDemo", LogEventLevel.Information)
-                            .WriteTo.MSSqlServer(connectionString, tableName, columnOptions: columnOption)
-                            .CreateLogger();
+        new SqlColumn
+            {ColumnName = "RequestUri", DataType = SqlDbType.NVarChar, DataLength = -1, AllowNull = false},
+    }
+            };
+
+            var log = new LoggerConfiguration()
+                .WriteTo.MSSqlServer(@"Server=...",
+                    sinkOptions: new MSSqlServerSinkOptions { TableName = "Timesheet" },
+                    columnOptions: columnOptions)
+                .CreateLogger();
 
             Log.CloseAndFlush();
 
