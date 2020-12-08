@@ -20,7 +20,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace TimesheetLaikas.Models
 {
@@ -147,22 +146,5 @@ namespace TimesheetLaikas.Models
         //  public byte[] ProfilePic { get; set; }
 
         //public virtual ICollection<EmployeesInDepartment> EmployeesInDepartment { get; set; }
-    }
-  public class EmployeeContext : DbContext
-        {
-            private readonly string connectionString;
-
-            public EmployeeContext(string connectionString)
-            {
-                this.connectionString = connectionString;
-            }
-
-            public DbSet<Employee> Employees { get; set; }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                optionsBuilder.Equals(connectionString);
-            }
-        }
     }
 }
