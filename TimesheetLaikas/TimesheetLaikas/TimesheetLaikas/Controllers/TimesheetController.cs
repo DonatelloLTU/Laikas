@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-07-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="TimesheetController.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,12 +28,32 @@ using Serilog.Sinks.SystemConsole;
 using Serilog;
 namespace TimesheetLaikas.Controllers
 {
+    /// <summary>
+    /// Class TimesheetController.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public class TimesheetController : Controller
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly ApplicationDbContext _context;
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
+        /// <summary>
+        /// The role manager
+        /// </summary>
         private readonly RoleManager<Roles> _roleManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimesheetController"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="roleManager">The role manager.</param>
         public TimesheetController(ApplicationDbContext context, UserManager<Employee> userManager, RoleManager<Roles> roleManager)
         {
             _userManager = userManager;
@@ -29,6 +62,11 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Indexes the specified sort order.
+        /// </summary>
+        /// <param name="sortOrder">The sort order.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Index(string sortOrder/*, string statusString*/)
         {
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
@@ -57,6 +95,10 @@ namespace TimesheetLaikas.Controllers
             return View(await timesheets.AsNoTracking().ToListAsync());
         }
 
+        /// <summary>
+        /// Views the timesheets.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> ViewTimesheets()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -69,6 +111,11 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Detailses the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -87,12 +134,21 @@ namespace TimesheetLaikas.Controllers
             return View(timesheet);
         }
 
+        /// <summary>
+        /// Times the punch.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult TimePunch()
         {
 
             return View();
         }
 
+        /// <summary>
+        /// Punches the in.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PunchIn(TimesheetViewModel model)
@@ -117,6 +173,11 @@ namespace TimesheetLaikas.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Punches the out.
+        /// </summary>
+        /// <param name="timesheet">The timesheet.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PunchOut(Timesheet timesheet)
@@ -144,6 +205,10 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult Create()
         {
             ViewData["EmpID"] = new SelectList(_context.Employee, "Id", "FULL_NAME");
@@ -151,6 +216,11 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Creates the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TimesheetViewModel model)
@@ -192,6 +262,11 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             TimesheetViewModel model = new TimesheetViewModel();
@@ -222,6 +297,12 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="timesheet">The timesheet.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PunchIn,PunchOut,Status,EmpID,StatusComments,TotalWorkTime,Id,TimeStamp")] TimesheetViewModel timesheet)
@@ -263,6 +344,11 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -282,6 +368,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // POST: Timesheets/Delete/5
+        /// <summary>
+        /// Deletes the confirmed.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -292,6 +383,11 @@ namespace TimesheetLaikas.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Timesheets the exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool TimesheetExists(int id)
         {
             return _context.Timesheet.Any(e => e.Id == id);

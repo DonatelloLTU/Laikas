@@ -1,4 +1,18 @@
-﻿@model TimesheetLaikas.Models.Department
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-02-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="Details.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model TimesheetLaikas.Models.Department
 
 @{
     ViewData["Title"] = "Details";
@@ -24,8 +38,8 @@
 
     </dl>
 
-    
-<h3>List of Employees</h3>
+
+    <h3>List of Employees</h3>
 
     <table class="table table-striped">
         <thead>
@@ -39,22 +53,22 @@
 
             @foreach (var item in Model.Employee)
             {
-            <tr>
+                <tr>
 
-                <td>
-                    @item.FULL_NAME
-                </td>
-                <td>
-                    @item.PhoneNumber
-                </td>
-                <td>
-                    @item.Email
-                </td>
+                    <td>
+                        @item.FULL_NAME
+                    </td>
+                    <td>
+                        @item.PhoneNumber
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
 
-            </tr>
-                }
-                </tbody>
-        </table>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

@@ -1,4 +1,18 @@
-﻿@{
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="_Layout.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@{
     Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
 
@@ -62,7 +76,7 @@
                             </div>
                         </li>
 
-                        
+
 
                     }
 
@@ -79,23 +93,23 @@
         </div>
     </nav>
 
-    
 
-    <div class="container body-content" >
+
+    <div class="container body-content">
         <h2 style="color:black">Manage your account</h2>
 
         <div>
             <h4 style="color:black">Change your account settings</h4>
-            </div>
         </div>
-                    @RenderBody()
-              
+    </div>
+    @RenderBody()
 
-        
-        <hr />
-        <footer>
-            <p>&copy; 2020 - TimesheetLaikas</p>
-        </footer>
+
+
+    <hr />
+    <footer>
+        <p>&copy; 2020 - TimesheetLaikas</p>
+    </footer>
     </div>
 
     <environment include="Development">

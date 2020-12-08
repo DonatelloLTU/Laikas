@@ -1,16 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TimesheetLaikas.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.AspNetCore.Mvc;
-using Fluent.Infrastructure.FluentModel;
+﻿using TimesheetLaikas.Controllers;
 
 namespace TimesheetLaikas.Controllers.Tests
+
 {
     [TestClass()]
-    public class TimesheetControllerTests
+    public class TimesheesControllerTests
     {
         [TestMethod()]
         public void TimesheetControllerTest()

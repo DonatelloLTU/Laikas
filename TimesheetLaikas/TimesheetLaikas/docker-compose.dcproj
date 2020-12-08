@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>82e11b24-ef33-4a12-b944-833428b6926a</ProjectGuid>
+    <ProjectGuid>5e0b7a7b-8475-424c-81a8-84bb76e03716</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>timesheetlaikas</DockerServiceName>

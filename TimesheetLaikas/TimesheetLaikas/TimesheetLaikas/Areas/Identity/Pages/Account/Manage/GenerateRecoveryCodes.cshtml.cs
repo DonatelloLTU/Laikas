@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="GenerateRecoveryCodes.cshtml.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,11 +23,27 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// Class GenerateRecoveryCodesModel.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
     public class GenerateRecoveryCodesModel : PageModel
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateRecoveryCodesModel"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="logger">The logger.</param>
         public GenerateRecoveryCodesModel(
             UserManager<Employee> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
@@ -23,12 +52,25 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        /// <summary>
+        /// Gets or sets the recovery codes.
+        /// </summary>
+        /// <value>The recovery codes.</value>
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the status message.
+        /// </summary>
+        /// <value>The status message.</value>
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// on get as an asynchronous operation.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
+        /// <exception cref="InvalidOperationException">Cannot generate recovery codes for user with ID '{userId}' because they do not have 2FA enabled.</exception>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -47,6 +89,11 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// on post as an asynchronous operation.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
+        /// <exception cref="InvalidOperationException">Cannot generate recovery codes for user with ID '{userId}' as they do not have 2FA enabled.</exception>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

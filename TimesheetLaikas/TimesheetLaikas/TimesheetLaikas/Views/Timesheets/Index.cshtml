@@ -1,4 +1,18 @@
-﻿@model IEnumerable<TimesheetLaikas.Models.Timesheet>
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-07-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="Index.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model IEnumerable<TimesheetLaikas.Models.Timesheet>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,8 +21,8 @@
 <h2>Index</h2>
 
 <p>
-        <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i>  Create New</a>
-    </p>
+    <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i>  Create New</a>
+</p>
 
 <table class="table">
     <thead>
@@ -50,30 +64,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalWorkTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TotalPay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalWorkTime)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TotalPay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

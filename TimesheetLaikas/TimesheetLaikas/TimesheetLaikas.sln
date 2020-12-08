@@ -5,11 +5,19 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimesheetLaikas", "TimesheetLaikas\TimesheetLaikas.csproj", "{A77BB140-B64A-4159-B656-1B38182B5D56}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{82E11B24-EF33-4A12-B944-833428B6926A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{AC45BA6F-14A0-46DC-956B-C53D3A5EDF79}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		TimesheetLaikas\Dockerfile = TimesheetLaikas\Dockerfile
+		TimesheetLaikas\nginx.conf = TimesheetLaikas\nginx.conf
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetLaikas.Tests", "TimesheetLaikas.Tests\TimesheetLaikas.Tests.csproj", "{67983F65-BBBA-4D9C-9489-6724B1D507F4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{232117E1-E352-4BED-B83A-533E42924EF0}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetLaikasTests3", "TimesheetLaikasTests3\TimesheetLaikasTests3.csproj", "{08A388F2-12FC-48FC-8D4F-383F2ED3ADD0}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5E0B7A7B-8475-424C-81A8-84BB76E03716}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +29,10 @@ Global
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82E11B24-EF33-4A12-B944-833428B6926A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82E11B24-EF33-4A12-B944-833428B6926A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82E11B24-EF33-4A12-B944-833428B6926A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82E11B24-EF33-4A12-B944-833428B6926A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67983F65-BBBA-4D9C-9489-6724B1D507F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67983F65-BBBA-4D9C-9489-6724B1D507F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67983F65-BBBA-4D9C-9489-6724B1D507F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67983F65-BBBA-4D9C-9489-6724B1D507F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08A388F2-12FC-48FC-8D4F-383F2ED3ADD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08A388F2-12FC-48FC-8D4F-383F2ED3ADD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08A388F2-12FC-48FC-8D4F-383F2ED3ADD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08A388F2-12FC-48FC-8D4F-383F2ED3ADD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

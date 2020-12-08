@@ -1,4 +1,18 @@
-﻿@model IEnumerable<TimesheetLaikas.Models.Employee>
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="Index.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model IEnumerable<TimesheetLaikas.Models.Employee>
 @using TimesheetLaikas.Models
 
 @{ ViewData["Title"] = "Index"; }
@@ -27,55 +41,56 @@
             <th>
                 @Html.DisplayNameFor(model => model.CITY)
             </th>
-        
+
             <th>
                 @Html.DisplayNameFor(model => model.ZIPCODE)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-       
+
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DepartmentParm"]"> @Html.DisplayNameFor(model => model.Department)</a>
-</th>
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.EMP_FNAME)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EMP_LNAME)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ADDRESS)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CITY)
-    </td>
-   
-    <td>
-        @Html.DisplayFor(modelItem => item.ZIPCODE)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMP_FNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMP_LNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ADDRESS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CITY)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZIPCODE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
 
 
-    <td>
-        @Html.DisplayFor(modelItem => item.Department.DeptName)
-    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DeptName)
+                </td>
 
-    <td>
-        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
-    </td>
-</tr>}
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
+                </td>
+            </tr>
+}
     </tbody>
 </table>

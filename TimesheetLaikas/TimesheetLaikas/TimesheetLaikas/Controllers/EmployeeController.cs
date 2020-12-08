@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="EmployeeController.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,12 +29,32 @@ using TimesheetLaikas.Models.ViewModels;
 namespace TimesheetLaikas.Controllers
 {
 
+    /// <summary>
+    /// Class EmployeeController.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public class EmployeeController : Controller
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> userManager;
+        /// <summary>
+        /// The role manager
+        /// </summary>
         private readonly RoleManager<Roles> roleManager;
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmployeeController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="roleManager">The role manager.</param>
+        /// <param name="context">The context.</param>
         public EmployeeController(UserManager<Employee> userManager, RoleManager<Roles> roleManager, ApplicationDbContext context)
         {
             this.userManager = userManager;
@@ -29,6 +62,11 @@ namespace TimesheetLaikas.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Indexes the specified sort order.
+        /// </summary>
+        /// <param name="sortOrder">The sort order.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Index(string sortOrder)
         {
             ViewData["LNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lname_desc" : "";
@@ -56,6 +94,10 @@ namespace TimesheetLaikas.Controllers
         }
 
 
+        /// <summary>
+        /// Adds the user.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public IActionResult AddUser()
         {
@@ -71,6 +113,11 @@ namespace TimesheetLaikas.Controllers
             return View("AddUser", model);
         }
 
+        /// <summary>
+        /// Adds the user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> AddUser(UserViewModel model)
         {
@@ -110,6 +157,11 @@ namespace TimesheetLaikas.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -145,6 +197,12 @@ namespace TimesheetLaikas.Controllers
             return View("Edit", model);
         }
 
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(string id, UserViewModel model)
         {

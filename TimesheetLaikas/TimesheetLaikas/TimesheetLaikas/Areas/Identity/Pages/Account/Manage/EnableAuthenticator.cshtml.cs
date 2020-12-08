@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="EnableAuthenticator.cshtml.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
@@ -13,14 +26,37 @@ using Microsoft.Extensions.Logging;
 using TimesheetLaikas.Models;
 namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
 {
+    /// <summary>
+    /// Class EnableAuthenticatorModel.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
     public class EnableAuthenticatorModel : PageModel
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger<EnableAuthenticatorModel> _logger;
+        /// <summary>
+        /// The URL encoder
+        /// </summary>
         private readonly UrlEncoder _urlEncoder;
 
+        /// <summary>
+        /// The authenticator URI format
+        /// </summary>
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnableAuthenticatorModel"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="urlEncoder">The URL encoder.</param>
         public EnableAuthenticatorModel(
             UserManager<Employee> userManager,
             ILogger<EnableAuthenticatorModel> logger,
@@ -31,21 +67,48 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             _urlEncoder = urlEncoder;
         }
 
+        /// <summary>
+        /// Gets or sets the shared key.
+        /// </summary>
+        /// <value>The shared key.</value>
         public string SharedKey { get; set; }
 
+        /// <summary>
+        /// Gets or sets the authenticator URI.
+        /// </summary>
+        /// <value>The authenticator URI.</value>
         public string AuthenticatorUri { get; set; }
 
+        /// <summary>
+        /// Gets or sets the recovery codes.
+        /// </summary>
+        /// <value>The recovery codes.</value>
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the status message.
+        /// </summary>
+        /// <value>The status message.</value>
         [TempData]
         public string StatusMessage { get; set; }
 
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>The input.</value>
         [BindProperty]
         public InputModel Input { get; set; }
 
+        /// <summary>
+        /// Class InputModel.
+        /// </summary>
         public class InputModel
         {
+            /// <summary>
+            /// Gets or sets the code.
+            /// </summary>
+            /// <value>The code.</value>
             [Required]
             [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Text)]
@@ -53,6 +116,10 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             public string Code { get; set; }
         }
 
+        /// <summary>
+        /// on get as an asynchronous operation.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -66,6 +133,10 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        /// <summary>
+        /// on post as an asynchronous operation.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -111,6 +182,10 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             }
         }
 
+        /// <summary>
+        /// load shared key and qr code URI as an asynchronous operation.
+        /// </summary>
+        /// <param name="user">The user.</param>
         private async Task LoadSharedKeyAndQrCodeUriAsync(Employee user)
         {
             // Load the authenticator key & QR code URI to display on the form
@@ -127,6 +202,11 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             AuthenticatorUri = GenerateQrCodeUri(email, unformattedKey);
         }
 
+        /// <summary>
+        /// Formats the key.
+        /// </summary>
+        /// <param name="unformattedKey">The unformatted key.</param>
+        /// <returns>System.String.</returns>
         private string FormatKey(string unformattedKey)
         {
             var result = new StringBuilder();
@@ -144,6 +224,12 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account.Manage
             return result.ToString().ToLowerInvariant();
         }
 
+        /// <summary>
+        /// Generates the qr code URI.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="unformattedKey">The unformatted key.</param>
+        /// <returns>System.String.</returns>
         private string GenerateQrCodeUri(string email, string unformattedKey)
         {
             return string.Format(

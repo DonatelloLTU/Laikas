@@ -1,4 +1,17 @@
-﻿const http = require('http');
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-08-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-08-2020
+// ***********************************************************************
+// <copyright file="app.js" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+const http = require('http');
 const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
@@ -8,5 +21,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port,() => {
+  /// <summary>
+  /// </summary>
   console.log(`Server running at port `+port);
 });

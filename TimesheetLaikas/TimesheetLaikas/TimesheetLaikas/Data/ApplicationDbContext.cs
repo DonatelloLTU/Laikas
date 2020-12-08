@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="ApplicationDbContext.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,17 +20,39 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Data
 {
+    /// <summary>
+    /// Class ApplicationDbContext.
+    /// Implements the <see cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{TimesheetLaikas.Models.Employee, TimesheetLaikas.Models.Roles, System.String}" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{TimesheetLaikas.Models.Employee, TimesheetLaikas.Models.Roles, System.String}" />
     public class ApplicationDbContext : IdentityDbContext<Employee, Roles, string>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+        /// </summary>
         public ApplicationDbContext()
         {
         }
 
+        /// <summary>
+        /// Override this method to further configure the model that was discovered by convention from the entity types
+        /// exposed in <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" /> properties on your derived context. The resulting model may be cached
+        /// and re-used for subsequent instances of your derived context.
+        /// </summary>
+        /// <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+        /// define extension methods on this object that allow you to configure aspects of the model that are specific
+        /// to a given database.</param>
+        /// <remarks>If a model is explicitly set on the options for this context (via <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)" />)
+        /// then this method will not be run.</remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -95,11 +130,35 @@ namespace TimesheetLaikas.Data
         }
 
 
+        /// <summary>
+        /// Gets or sets the department.
+        /// </summary>
+        /// <value>The department.</value>
         public DbSet<Department> Department { get; set; }
+        /// <summary>
+        /// Gets or sets the division.
+        /// </summary>
+        /// <value>The division.</value>
         public DbSet<Division> Division { get; set; }
+        /// <summary>
+        /// Gets or sets the timesheet.
+        /// </summary>
+        /// <value>The timesheet.</value>
         public DbSet<Timesheet> Timesheet { get; set; }
+        /// <summary>
+        /// Gets or sets the employee.
+        /// </summary>
+        /// <value>The employee.</value>
         public DbSet<Employee> Employee { get; set; }
+        /// <summary>
+        /// Gets or sets the payperiods.
+        /// </summary>
+        /// <value>The payperiods.</value>
         public DbSet<Payperiod> Payperiods { get; set; }
+        /// <summary>
+        /// Gets or sets the employee roles.
+        /// </summary>
+        /// <value>The employee roles.</value>
         public DbSet<Roles> EmployeeRoles { get; set; }
     }
 }

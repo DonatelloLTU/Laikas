@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="SeedData.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,12 +23,25 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Data
 {
+    /// <summary>
+    /// Class SeedData.
+    /// </summary>
     public static class SeedData
     {
+        /// <summary>
+        /// Initializes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public static void Initialize(ApplicationDbContext context)
         {
         }
 
+        /// <summary>
+        /// Initializes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="roleManager">The role manager.</param>
         public static async Task Initialize(ApplicationDbContext context,
                                      UserManager<Employee> userManager,
                                      RoleManager<Roles> roleManager)

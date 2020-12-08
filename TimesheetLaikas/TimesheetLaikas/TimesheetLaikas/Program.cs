@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="Program.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,8 +32,15 @@ using System.Data;
 
 namespace TimesheetLaikas
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
             var appSettings = new ConfigurationBuilder()
@@ -75,11 +95,20 @@ namespace TimesheetLaikas
 
             host.Run();
         }
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
             .Build();
+        /// <summary>
+        /// Creates the web host builder.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>IWebHostBuilder.</returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
             .ConfigureLogging((ctx, builder)=>

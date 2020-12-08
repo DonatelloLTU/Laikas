@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="RolesController.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,13 +27,33 @@ using TimesheetLaikas.Models.ViewModels;
 
 namespace TimesheetLaikas.Controllers
 {
+    /// <summary>
+    /// Class RolesController.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Authorize(Roles = "Admin,HR")]
     public class RolesController : Controller
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly ApplicationDbContext _context;
+        /// <summary>
+        /// The role manager
+        /// </summary>
         private readonly RoleManager<Roles> _roleManager;
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RolesController"/> class.
+        /// </summary>
+        /// <param name="roleMgr">The role MGR.</param>
+        /// <param name="userMrg">The user MRG.</param>
+        /// <param name="context">The context.</param>
         public RolesController(RoleManager<Roles> roleMgr, UserManager<Employee> userMrg, ApplicationDbContext context)
         {
             _context = context;
@@ -29,12 +62,21 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Roles
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.EmployeeRoles.ToListAsync());
         }
 
         // GET: Roles
+        /// <summary>
+        /// Gets the employees.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> GetEmployees(string? id)
         {
             if (id == null)
@@ -66,6 +108,10 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Roles/Create
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult Create()
         {
             return View();
@@ -74,6 +120,12 @@ namespace TimesheetLaikas.Controllers
         // POST: Roles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Required] string id, RoleViewModel model)
@@ -102,6 +154,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Roles/Edit/5
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Edit(string id)
         {
             RoleViewModel model = new RoleViewModel();
@@ -133,6 +190,12 @@ namespace TimesheetLaikas.Controllers
         // POST: Roles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="roles">The roles.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, RoleViewModel roles)
@@ -169,6 +232,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Roles/Delete/5
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -188,6 +256,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // POST: Roles/Delete/5
+        /// <summary>
+        /// Deletes the confirmed.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -198,11 +271,20 @@ namespace TimesheetLaikas.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Roleses the exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool RolesExists(string id)
         {
             return _context.EmployeeRoles.Any(e => e.Id == id);
         }
 
+        /// <summary>
+        /// Errorses the specified result.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void Errors(IdentityResult result)
         {
             foreach (IdentityError error in result.Errors)

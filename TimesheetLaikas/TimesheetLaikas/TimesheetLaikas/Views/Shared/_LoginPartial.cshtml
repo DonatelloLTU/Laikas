@@ -1,3 +1,17 @@
+// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="_LoginPartial.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<Employee> SignInManager
@@ -20,7 +34,7 @@
                     <a asp-area="/Views/Timesheets/ViewTimesheets" asp-controller="Timesheets" asp-action="ViewTimesheets"><i class="fas fa-user-clock"></i>View Your Timesheets</a>
                     <div class="dropdown-divider"></div>
                     <a asp-area="/Views/Timesheets/TimePunch" asp-controller="Timesheets" asp-action="TimePunch"><i class="fas fa-user-clock"></i>Clock In/Clock Out</a>
-                    
+
                 </div>
             </li>
 

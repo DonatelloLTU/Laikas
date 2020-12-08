@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="ConfirmEmail.cshtml.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,16 +24,35 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Class ConfirmEmailModel.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfirmEmailModel"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
         public ConfirmEmailModel(UserManager<Employee> userManager)
         {
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// on get as an asynchronous operation.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="code">The code.</param>
+        /// <returns>IActionResult.</returns>
+        /// <exception cref="InvalidOperationException">Error confirming email for user with ID '{userId}':</exception>
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)

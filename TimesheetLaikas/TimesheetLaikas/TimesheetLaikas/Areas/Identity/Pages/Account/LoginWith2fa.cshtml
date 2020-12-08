@@ -1,4 +1,18 @@
-﻿@page
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-06-2020
+// ***********************************************************************
+// <copyright file="LoginWith2fa.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@page
 @model LoginWith2faModel
 @{
     ViewData["Title"] = "Two-factor authentication";
@@ -32,7 +46,7 @@
     </div>
 </div>
 <p>
-    Don't have access to your authenticator device? You can 
+    Don't have access to your authenticator device? You can
     <a asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">log in with a recovery code</a>.
 </p>
 

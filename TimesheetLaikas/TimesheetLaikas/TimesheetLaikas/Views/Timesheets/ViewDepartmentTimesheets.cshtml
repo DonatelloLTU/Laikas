@@ -1,4 +1,18 @@
-﻿@model IEnumerable<TimesheetLaikas.Models.Timesheet>
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-07-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-08-2020
+// ***********************************************************************
+// <copyright file="ViewDepartmentTimesheets.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model IEnumerable<TimesheetLaikas.Models.Timesheet>
 
 @{
     ViewData["Title"] = "ViewDepartmentTimesheets";
@@ -22,32 +36,38 @@
             <th>
                 @Html.DisplayNameFor(model => model.TotalPay)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalWorkTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TotalPay)
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalWorkTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-06-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="ExternalLogin.cshtml.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,13 +26,33 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Areas.Identity.Pages.Account
 {
+    /// <summary>
+    /// Class ExternalLoginModel.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
         private readonly SignInManager<Employee> _signInManager;
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<Employee> _userManager;
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger<ExternalLoginModel> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExternalLoginModel"/> class.
+        /// </summary>
+        /// <param name="signInManager">The sign in manager.</param>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="logger">The logger.</param>
         public ExternalLoginModel(
             SignInManager<Employee> signInManager,
             UserManager<Employee> userManager,
@@ -30,28 +63,61 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
+        /// <value>The input.</value>
         [BindProperty]
         public InputModel Input { get; set; }
 
+        /// <summary>
+        /// Gets or sets the login provider.
+        /// </summary>
+        /// <value>The login provider.</value>
         public string LoginProvider { get; set; }
 
+        /// <summary>
+        /// Gets or sets the return URL.
+        /// </summary>
+        /// <value>The return URL.</value>
         public string ReturnUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>The error message.</value>
         [TempData]
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// Class InputModel.
+        /// </summary>
         public class InputModel
         {
+            /// <summary>
+            /// Gets or sets the email.
+            /// </summary>
+            /// <value>The email.</value>
             [Required]
             [EmailAddress]
             public string Email { get; set; }
         }
 
+        /// <summary>
+        /// Called when [get asynchronous].
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult OnGetAsync()
         {
             return RedirectToPage("./Login");
         }
 
+        /// <summary>
+        /// Called when [post].
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns>IActionResult.</returns>
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
@@ -60,6 +126,12 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account
             return new ChallengeResult(provider, properties);
         }
 
+        /// <summary>
+        /// on get callback as an asynchronous operation.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <param name="remoteError">The remote error.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -102,6 +174,11 @@ namespace TimesheetLaikas.Areas.Identity.Pages.Account
             }
         }
 
+        /// <summary>
+        /// on post confirmation as an asynchronous operation.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");

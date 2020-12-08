@@ -1,4 +1,18 @@
-﻿@model IEnumerable<TimesheetLaikas.Models.Timesheet>
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-07-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-08-2020
+// ***********************************************************************
+// <copyright file="TImePunch.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model IEnumerable<TimesheetLaikas.Models.Timesheet>
 
 @{
     ViewData["Title"] = "PunchIn";
@@ -20,24 +34,30 @@
                 <button class="btn btn-lg btn-danger">Clock Out</button>
             </form>
         </div>
-        </div>
+    </div>
 
 </body>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
         //Display current time on timepunch page
     function display_c(){
+    /// <summary>
+    /// Displays the c.
+    /// </summary>
     var refresh=1000; // Refresh rate in milli seconds
     mytime=setTimeout('display_ct()',refresh)
     }
 
         function display_ct() {
+        /// <summary>
+        /// Displays the ct.
+        /// </summary>
         var x = new Date()
         document.getElementById('ct').innerHTML = x;
         display_c();
          }
-    </script>
+</script>
 
 
 

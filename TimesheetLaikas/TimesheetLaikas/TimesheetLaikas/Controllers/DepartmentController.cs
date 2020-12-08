@@ -1,4 +1,18 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="DepartmentController.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,16 +28,33 @@ using TimesheetLaikas.Models.ViewModels;
 namespace TimesheetLaikas.Controllers
 {
 
+    /// <summary>
+    /// Class DepartmentsController.
+    /// Implements the <see cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public class DepartmentsController : Controller
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DepartmentsController"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public DepartmentsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Departments
+        /// <summary>
+        /// Indexes the specified sort order.
+        /// </summary>
+        /// <param name="sortOrder">The sort order.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Index(string sortOrder)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -48,6 +79,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Departments/Details/5
+        /// <summary>
+        /// Detailses the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -69,6 +105,10 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Departments/Create
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         public IActionResult Create()
         {
             ViewData["DivisionId"] = new SelectList(_context.Division, "Id", "DivisionName");
@@ -78,6 +118,11 @@ namespace TimesheetLaikas.Controllers
         // POST: Departments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates the specified department.
+        /// </summary>
+        /// <param name="department">The department.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DeptName,DivisionId,Id,TimeStamp")] Department department)
@@ -93,6 +138,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Departments/Edit/5
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             DepartmentViewModel model = new DepartmentViewModel();
@@ -120,6 +170,12 @@ namespace TimesheetLaikas.Controllers
         // POST: Departments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="department">The department.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, DepartmentViewModel department)
@@ -144,6 +200,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // GET: Departments/Delete/5
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -163,6 +224,11 @@ namespace TimesheetLaikas.Controllers
         }
 
         // POST: Departments/Delete/5
+        /// <summary>
+        /// Deletes the confirmed.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -173,6 +239,11 @@ namespace TimesheetLaikas.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Departments the exists.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool DepartmentExists(int id)
         {
             return _context.Department.Any(e => e.Id == id);

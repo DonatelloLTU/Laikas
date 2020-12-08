@@ -1,4 +1,18 @@
-﻿@model TimesheetLaikas.Models.ViewModels.UserViewModel
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-07-2020
+// ***********************************************************************
+// <copyright file="Edit.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model TimesheetLaikas.Models.ViewModels.UserViewModel
 @using TimesheetLaikas.Models
 
 @{ ViewData["Title"] = "Edit"; }
@@ -45,7 +59,7 @@
                         <span asp-validation-for="CITY" class="text-danger"></span>
                     </div>
 
-           
+
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
                         <input asp-for="ZIPCODE" class="form-control" required>

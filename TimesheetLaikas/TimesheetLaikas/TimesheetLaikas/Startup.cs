@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 11-30-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-08-2020
+// ***********************************************************************
+// <copyright file="Startup.cs" company="TimesheetLaikas">
+//     Copyright (c) HP Inc.. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +30,31 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 namespace TimesheetLaikas
 {
+    /// <summary>
+    /// Class Startup.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -63,6 +91,15 @@ namespace TimesheetLaikas
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures the specified application.
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="env">The env.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="roleManager">The role manager.</param>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="logger">The logger.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context, RoleManager<Roles> roleManager, UserManager<Employee> userManager, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())

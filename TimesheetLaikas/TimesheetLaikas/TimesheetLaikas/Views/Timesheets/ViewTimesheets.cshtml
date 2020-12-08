@@ -1,4 +1,18 @@
-﻿@model IEnumerable<TimesheetLaikas.Models.Timesheet>
+﻿// ***********************************************************************
+// Assembly         : TimesheetLaikas
+// Author           : Donatas & Matt
+// Created          : 12-07-2020
+//
+// Last Modified By : Donatas & Matt
+// Last Modified On : 12-08-2020
+// ***********************************************************************
+// <copyright file="ViewTimesheets.cshtml" company="TimesheetLaikas">
+    //     Copyright (c) HP Inc.. All rights reserved.
+    //
+</copyright>
+// <summary></summary>
+// ***********************************************************************
+@model IEnumerable<TimesheetLaikas.Models.Timesheet>
 
 @{
     ViewData["Title"] = "ViewTimesheets";
@@ -7,7 +21,7 @@
 <table class="table">
     <thead>
         <tr>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.PunchIn)
             </th>
@@ -21,27 +35,33 @@
             <th>
                 @Html.DisplayNameFor(model => model.TotalPay)
             </th>
+            <td>
+                @Html.DisplayNameFor(model => model.Status)
+            </td>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PunchOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalWorkTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TotalPay)
-            </td>
-        </tr>
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PunchOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalWorkTime)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TotalPay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
         }
     </tbody>
 </table>
