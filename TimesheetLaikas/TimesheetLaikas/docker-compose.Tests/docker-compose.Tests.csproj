@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>docker_compose.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Controllers\RolesControllerTests.cs" />
+    <Compile Remove="Controllers\TimesheetControllerTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSubstitute" Version="4.2.2" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\docker-compose.dcproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Controllers\RolesControllerTests.cs" />
+    <None Include="Controllers\TimesheetControllerTests.cs" />
+  </ItemGroup>
+
+</Project>
