@@ -160,5 +160,6 @@ namespace TimesheetLaikas.Data
         /// </summary>
         /// <value>The employee roles.</value>
         public DbSet<Roles> EmployeeRoles { get; set; }
+        public object Timesheets { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace TimesheetLaikas.Models
         {
         }
 
+        
         /// <summary>
         /// Gets or sets the emp fname.
         /// </summary>
@@ -131,6 +132,8 @@ namespace TimesheetLaikas.Models
         /// <value>The department.</value>
         [ForeignKey(nameof(DepartmentId))]
         public Department Department { get; set; }
+
+        public bool Exempt { get; set; }
 
         /// <summary>
         /// Gets or sets the departments.

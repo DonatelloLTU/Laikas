@@ -9,10 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{AC45BA6F
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		TimesheetLaikas\Dockerfile = TimesheetLaikas\Dockerfile
-		TimesheetLaikas\nginx.conf = TimesheetLaikas\nginx.conf
+		nginx.conf = nginx.conf
 	EndProjectSection
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5E0B7A7B-8475-424C-81A8-84BB76E03716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject1", "..\XUnitTestProject1\XUnitTestProject1.csproj", "{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +24,10 @@ Global
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A77BB140-B64A-4159-B656-1B38182B5D56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

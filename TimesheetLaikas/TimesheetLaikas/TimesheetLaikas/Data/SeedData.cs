@@ -32,7 +32,7 @@ namespace TimesheetLaikas.Data
         /// Initializes the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
-        public static void Initialize(ApplicationDbContext context)
+        public static void Initialize(ApplicationDbContext context, UserManager<Employee> userManager, RoleManager<Employee> roleManager)
         {
         }
 
@@ -149,6 +149,11 @@ namespace TimesheetLaikas.Data
                 }
                 HR = user.Id;
             }
+        }
+
+        internal static void Initialize(ApplicationDbContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

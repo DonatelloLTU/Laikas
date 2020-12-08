@@ -138,6 +138,7 @@ namespace TimesheetLaikas.Controllers
                     ConfirmPassword = model.ConfirmPassword,
                     PhoneNumber = model.EMP_PHONE,
                     DepartmentId = model.DepartmentId,
+                    Exempt = (model.RoleId.Contains("HR") || model.RoleId.Contains("Admin") || model.RoleId.Contains("Supervisor")) ? true : false //Excemption
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

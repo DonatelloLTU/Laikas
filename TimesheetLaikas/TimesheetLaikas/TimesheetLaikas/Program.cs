@@ -43,6 +43,24 @@ namespace TimesheetLaikas
         /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
+            Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
+
+            Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer(connectionString: "Password=1234:);Persist Security Info=True;User ID=TimesheetAdmin;Initial Catalog=Timesheet;Data Source=.",
+                sinkOptions: new MSSqlServerSinkOptions { TableName = "EventLogs", AutoCreateSqlTable = true }).CreateLogger();
+
+            try
+            {
+                CreateWebHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host shutdown unexpectacly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
             var appSettings = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
@@ -111,7 +129,7 @@ namespace TimesheetLaikas
         /// <returns>IWebHostBuilder.</returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging((ctx, builder)=>
+            .ConfigureLogging((ctx, builder) =>
             {
 
                 builder.AddConfiguration(

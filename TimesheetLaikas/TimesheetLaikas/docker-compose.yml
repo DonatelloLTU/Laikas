@@ -1,8 +1,10 @@
-version: '3.4'
-
-services:
-  timesheetlaikas:
-    image: ${DOCKER_REGISTRY-}timesheetlaikas
-    build:
-      context: .
-      dockerfile: TimesheetLaikas/Dockerfile
+nginx:
+    build: ./nginx ./TimesheetLaikas
+    links:
+        - kestrel:kestrel
+    ports:
+        - "80:80"
+kestrel:
+    build: ./TimesheetLaikas
+    ports:
+        - "80"
