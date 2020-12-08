@@ -27,33 +27,10 @@ namespace TimesheetLaikas.Controllers
         }
 
 
-        public async Task<IActionResult> Index(string sortOrder/*, string statusString*/)
+        public async Task<IActionResult> Index()
         {
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-
-            var db = _context.Timesheet.Include(t => t.Employee);
-
-            var timesheets = from t in _context.Timesheet
-                             select t;
-
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    timesheets = timesheets.OrderByDescending(t => t.Employee.EMP_LNAME);
-                    break;
-
-                case "Date":
-                    timesheets = timesheets.OrderBy(t => t.PunchIn);
-                    break;
-
-                case "date_desc":
-                    timesheets = timesheets.OrderByDescending(t => t.PunchIn);
-                    break;
-            }
-
-            return View(await timesheets.AsNoTracking().ToListAsync());
+            var applicationDbContext = _context.Timesheet.Include(t => t.Employee);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         public async Task<IActionResult> ViewTimesheets()
@@ -113,14 +90,14 @@ namespace TimesheetLaikas.Controllers
             {
                 Timesheet timesheet = new Timesheet();
 
-                timesheet.PunchIn = DateTime.Now;
+                timesheet.PunchIn = DateTime.UtcNow;
 
                 timesheet.EmpID = currentUser.Id;
 
 
                 _context.Add(timesheet);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTimesheets));
             }
 
 
@@ -141,13 +118,13 @@ namespace TimesheetLaikas.Controllers
                                 .FirstOrDefault();
 
 
-                timesheet.PunchOut = DateTime.Now;
+                timesheet.PunchOut = DateTime.UtcNow;
 
                 _context.Update(timesheet);
 
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTimesheets));
             }
 
             return View(timesheet);
@@ -171,12 +148,12 @@ namespace TimesheetLaikas.Controllers
             if (ModelState.IsValid)
             {
                 Timesheet timesheet = new Timesheet();
-
-                timesheet.PunchIn = model.PunchIn;
-                timesheet.PunchOut = model.PunchOut;
-
-                timesheet.EmpID = model.EmpID;
-
+                {
+                    timesheet.PunchIn = model.PunchIn;
+                    timesheet.PunchOut = model.PunchOut;
+                    timesheet.EmpID = model.EmpID;
+                    timesheet.Status = StatusTypes.Pending;
+                }
                 if (model.PunchOut != null)
                 {
                     DateTime ValidPunchOut = model.PunchOut.Value;
@@ -221,6 +198,7 @@ namespace TimesheetLaikas.Controllers
                 model.PunchOut = timesheet.PunchOut;
                 model.TotalWorkTime = timesheet.TotalWorkTime;
                 model.TotalPay = timesheet.TotalPay;
+
             }
 
             if (timesheet == null)
@@ -234,7 +212,7 @@ namespace TimesheetLaikas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PunchIn,PunchOut,Status,EmpID,StatusComments,TotalWorkTime,Id,TimeStamp")] TimesheetViewModel timesheet)
+        public async Task<IActionResult> Edit(int id, [Bind("PunchIn,PunchOut,Status,EmpID,TotalWorkTime,Id,TimeStamp")] TimesheetViewModel timesheet)
         {
             if (ModelState.IsValid)
             {

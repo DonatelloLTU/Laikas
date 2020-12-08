@@ -57,7 +57,7 @@ namespace TimesheetLaikas.Controllers
 
             var department = await _context.Department
                 .Include(d => d.Division)
-                .Include(d => d.Employees)
+                .Include(d => d.Employee)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (department == null)

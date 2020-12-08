@@ -26,7 +26,7 @@ namespace TimesheetLaikas.Models
             get; set;
         }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
     }
 
     public class Division : EntityBase

@@ -88,7 +88,7 @@ namespace TimesheetLaikas.Controllers
                 applicationRole.Id = model.Id;
                 applicationRole.Name = model.RoleName;
 
-                applicationRole.PayPeriodDuration = model.PayPeriodDuration;
+                //applicationRole.PayPeriodDuration = model.PayPeriodDuration;
 
                 IdentityResult roleRuslt = isExist ? await _roleManager.UpdateAsync(applicationRole)
                                                     : await _roleManager.CreateAsync(applicationRole);
@@ -119,7 +119,7 @@ namespace TimesheetLaikas.Controllers
             {
                 model.RoleName = role.Name;
 
-                model.PayPeriodDuration = role.PayPeriodDuration;
+                // model.PayPeriodDuration = role.PayPeriodDuration;
             }
 
             if (role == null)
@@ -150,7 +150,7 @@ namespace TimesheetLaikas.Controllers
                 {
                     roleEdit.Name = roles.RoleName;
 
-                    roleEdit.PayPeriodDuration = roles.PayPeriodDuration;
+                    // roleEdit.PayPeriodDuration = roles.PayPeriodDuration;
                 }
 
                 IdentityResult result = await _roleManager.UpdateAsync(roleEdit);

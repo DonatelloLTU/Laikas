@@ -16,9 +16,10 @@ namespace TimesheetLaikas.Models.ViewModels
 
         public DateTime PunchIn { get; set; }
         public DateTime? PunchOut { get; set; }
-        
-        public string TotalWorkTime {get; set;}
-
+        public StatusTypes Status { get; set; }
+        public string TotalWorkTime { get; set; }
+        [NotMapped]
+        public List<SelectListItem> Statuses { get; set; }
         public decimal? TotalPay { get; set; }
     }
 }

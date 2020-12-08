@@ -85,7 +85,6 @@ namespace TimesheetLaikas.Data
                     ADDRESS = "123 Admin Way",
                     CITY = "Parkersburg",
                     ZIPCODE = "26105",
-                    
                     PhoneNumber = "6902341234",
                     Payrate = 0,
                     DepartmentId = 1,
@@ -111,7 +110,6 @@ namespace TimesheetLaikas.Data
                     ADDRESS = "123 Campus",
                     CITY = "Parkersburg",
                     ZIPCODE = "26104",
-                  
                     PhoneNumber = "12300012345",
                     Payrate = 20.00M,
                     DepartmentId = 8,

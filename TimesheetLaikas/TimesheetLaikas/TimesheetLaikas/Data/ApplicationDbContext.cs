@@ -55,7 +55,7 @@ namespace TimesheetLaikas.Data
 
             modelBuilder.Entity<Employee>(b =>
             {
-                b.ToTable("Employees");
+                b.ToTable("Employee");
             });
 
             modelBuilder.Entity<Employee>()
@@ -68,11 +68,15 @@ namespace TimesheetLaikas.Data
             });
 
             modelBuilder.Entity<Timesheet>()
+           .Property(c => c.Status)
+           .HasConversion<string>();
+
+            modelBuilder.Entity<Timesheet>()
                 .Property(i => i.TotalPay)
                  .HasColumnType("Money");
 
             modelBuilder.Entity<Department>()
-                .HasMany(e => e.Employees);
+                .HasMany(e => e.Employee);
 
             modelBuilder.Entity<Division>()
                 .HasMany(d => d.Departments)
@@ -85,9 +89,9 @@ namespace TimesheetLaikas.Data
 
 
 
-            modelBuilder.Entity<Roles>()
-           .Property(c => c.PayPeriodDuration)
-           .HasConversion<string>();
+           // modelBuilder.Entity<Roles>()
+           //.Property(c => c.PayPeriodDuration)
+           //.HasConversion<string>();
         }
 
 

@@ -25,7 +25,10 @@ namespace TimesheetLaikas.Models
 
         [ForeignKey(nameof(EmpID))]
         public Employee Employee { get; set; }
-
+        [NotMapped]
+        public List<SelectListItem> Statuses { get; set; }
+        [DisplayName("Status")]
+        public StatusTypes Status { get; set; }
 
         [DisplayName("Total Hours Worked")]
         public string TotalWorkTime { get; set; }
@@ -34,15 +37,14 @@ namespace TimesheetLaikas.Models
         public decimal? TotalPay { get; set; }
     }
 
-    public enum PayPeriodTypes
+    public enum StatusTypes
     {
-        [Description("Weekly")]
-        Weekly,
 
-        [Description("BiWeekly")]
-        Biweekly,
-
-        [Description("Monthly")]
-        Monthly,
+        [Description("Pending")]
+        Pending,
+        [Description("Approved")]
+        Approved,
+        [Description("Rejected")]
+        Rejected
     }
 }

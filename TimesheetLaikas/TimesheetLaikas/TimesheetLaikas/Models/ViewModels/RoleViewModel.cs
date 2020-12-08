@@ -16,7 +16,7 @@ namespace TimesheetLaikas.Models.ViewModels
 
         public string Description { get; set; }
 
-        public PayPeriodTypes? PayPeriodDuration { get; set; }
+       // public PayPeriodTypes? PayPeriodDuration { get; set; }
     }
 
     public class RoleEmployeeList

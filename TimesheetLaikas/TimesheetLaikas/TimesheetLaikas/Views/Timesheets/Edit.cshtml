@@ -40,31 +40,32 @@
 
 
             }
-            else { 
+            else
+            {
                 <div class="form-group">
                     <label asp-for="PunchIn" class="control-label"></label>
                     <input asp-for="PunchIn" class="form-control" disabled />
                     <span asp-validation-for="PunchIn" class="text-danger"></span>
                 </div>
-            <div class="form-group">
-                <label asp-for="PunchOut" class="control-label"></label>
-                <input asp-for="PunchOut" class="form-control" disabled/>
-                <span asp-validation-for="PunchOut" class="text-danger"></span>
-            </div>
-
-
-
-            
-
-            <div class="form-group">
-                <label asp-for="TotalWorkTime" class="control-label"></label>
-                <input asp-for="TotalWorkTime" class="form-control" disabled />
-                <span asp-validation-for="TotalWorkTime" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                <div class="form-group">
+                    <label asp-for="PunchOut" class="control-label"></label>
+                    <input asp-for="PunchOut" class="form-control" disabled />
+                    <span asp-validation-for="PunchOut" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TotalWorkTime" class="control-label"></label>
+                    <input asp-for="TotalWorkTime" class="form-control" disabled />
+                    <span asp-validation-for="TotalWorkTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select asp-for="Status" asp-items="@Html.GetEnumSelectList<StatusTypes>()" class="form-control"></select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             }
         </form>
     </div>

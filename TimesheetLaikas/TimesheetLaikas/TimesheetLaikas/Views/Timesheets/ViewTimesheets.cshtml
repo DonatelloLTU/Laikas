@@ -7,9 +7,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.PunchIn)
             </th>
@@ -30,9 +28,7 @@
         @foreach (var item in Model)
         {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.FULL_NAME)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.PunchIn)
             </td>

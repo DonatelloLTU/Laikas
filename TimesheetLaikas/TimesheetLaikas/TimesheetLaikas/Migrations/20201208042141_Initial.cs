@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TimesheetLaikas.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,6 @@ namespace TimesheetLaikas.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    PayPeriodDuration = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
@@ -50,7 +49,7 @@ namespace TimesheetLaikas.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Employee",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -78,7 +77,7 @@ namespace TimesheetLaikas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Employee", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,9 +94,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_Employees_UserId",
+                        name: "FK_AspNetUserClaims_Employee_UserId",
                         column: x => x.UserId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -115,9 +114,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_Employees_UserId",
+                        name: "FK_AspNetUserLogins_Employee_UserId",
                         column: x => x.UserId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,9 +132,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_Employees_UserId",
+                        name: "FK_AspNetUserRoles_Employee_UserId",
                         column: x => x.UserId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -159,9 +158,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_Employees_UserId",
+                        name: "FK_AspNetUserTokens_Employee_UserId",
                         column: x => x.UserId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -180,9 +179,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_Division", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Division_Employees_DivsionChairId",
+                        name: "FK_Division_Employee_DivsionChairId",
                         column: x => x.DivsionChairId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -202,9 +201,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_Payperiods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payperiods_Employees_EmpID",
+                        name: "FK_Payperiods_Employee_EmpID",
                         column: x => x.EmpID,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -241,6 +240,7 @@ namespace TimesheetLaikas.Migrations
                     PunchIn = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PunchOut = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EmpID = table.Column<string>(type: "TEXT", nullable: true),
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
                     TotalWorkTime = table.Column<string>(type: "TEXT", nullable: true),
                     TotalPay = table.Column<decimal>(type: "Money", nullable: true),
                     PayperiodId = table.Column<int>(type: "INTEGER", nullable: true),
@@ -250,9 +250,9 @@ namespace TimesheetLaikas.Migrations
                 {
                     table.PrimaryKey("PK_Timesheet", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Timesheet_Employees_EmpID",
+                        name: "FK_Timesheet_Employee_EmpID",
                         column: x => x.EmpID,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -406,17 +406,17 @@ namespace TimesheetLaikas.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "Employees",
+                table: "Employee",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_DepartmentId",
-                table: "Employees",
+                name: "IX_Employee_DepartmentId",
+                table: "Employee",
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "Employees",
+                table: "Employee",
                 column: "NormalizedUserName",
                 unique: true);
 
@@ -444,8 +444,8 @@ namespace TimesheetLaikas.Migrations
                 column: "PayperiodId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Employees_Department_DepartmentId",
-                table: "Employees",
+                name: "FK_Employee_Department_DepartmentId",
+                table: "Employee",
                 column: "DepartmentId",
                 principalSchema: "College",
                 principalTable: "Department",
@@ -456,7 +456,7 @@ namespace TimesheetLaikas.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Division_Employees_DivsionChairId",
+                name: "FK_Division_Employee_DivsionChairId",
                 table: "Division");
 
             migrationBuilder.DropTable(
@@ -485,7 +485,7 @@ namespace TimesheetLaikas.Migrations
                 name: "Payperiods");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Department",

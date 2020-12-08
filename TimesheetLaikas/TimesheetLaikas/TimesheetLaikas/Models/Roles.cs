@@ -21,6 +21,6 @@ namespace TimesheetLaikas.Models
         {
         }
 
-        public PayPeriodTypes? PayPeriodDuration { get; set; }
+       // public PayPeriodTypes? PayPeriodDuration { get; set; }
     }
 }

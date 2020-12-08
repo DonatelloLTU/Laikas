@@ -9,8 +9,8 @@ using TimesheetLaikas.Data;
 namespace TimesheetLaikas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201203014604_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201208042141_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -373,7 +373,7 @@ namespace TimesheetLaikas.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("TimesheetLaikas.Models.Payperiod", b =>
@@ -420,9 +420,6 @@ namespace TimesheetLaikas.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PayPeriodDuration")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
@@ -448,6 +445,10 @@ namespace TimesheetLaikas.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("PunchOut")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("TimeStamp")
@@ -544,7 +545,7 @@ namespace TimesheetLaikas.Migrations
             modelBuilder.Entity("TimesheetLaikas.Models.Employee", b =>
                 {
                     b.HasOne("TimesheetLaikas.Models.Department", "Department")
-                        .WithMany("Employees")
+                        .WithMany("Employee")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -576,7 +577,7 @@ namespace TimesheetLaikas.Migrations
 
             modelBuilder.Entity("TimesheetLaikas.Models.Department", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TimesheetLaikas.Models.Division", b =>

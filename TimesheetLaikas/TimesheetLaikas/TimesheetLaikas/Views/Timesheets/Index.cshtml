@@ -28,7 +28,23 @@
             <th>
                 @Html.DisplayNameFor(model => model.TotalPay)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+
+                <div class="col-lg-12">
+                    <div class="button-group">
+                        <form asp-action="Index" method="get">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fas fa-filter"></i></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox" value="Pending" name="statusString" />&nbsp;Pending</a></li>
+                                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" value="Approved" name="statusString" />&nbsp;Approved</a></li>
+                                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" value="Rejected" name="statusString" />&nbsp;Rejected</a></li>
+                                <li><input type="submit" class="btn btn-primary" value="Apply filter" /></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -51,6 +67,9 @@
                 $@Html.DisplayFor(modelItem => item.TotalPay)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Edit</a>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
             </td>
@@ -59,28 +78,3 @@
     </tbody>
 </table>
 
-<script>
-
-    var options = [];
-
-    $('.dropdown-menu a').on('click', function (event) {
-
-        var $target = $(event.currentTarget),
-            val = $target.attr('data-value'),
-            $inp = $target.find('input'),
-            idx;
-
-        if ((idx = options.indexOf(val)) > -1) {
-            options.splice(idx, 1);
-            setTimeout(function () { $inp.prop('checked', false) }, 0);
-        } else {
-            options.push(val);
-            setTimeout(function () { $inp.prop('checked', true) }, 0);
-        }
-
-        $(event.target).blur();
-
-        console.log(options);
-        return false;
-    });
-</script>
