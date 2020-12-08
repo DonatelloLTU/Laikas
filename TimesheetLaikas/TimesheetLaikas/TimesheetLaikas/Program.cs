@@ -31,7 +31,7 @@ namespace TimesheetLaikas
             var host = CreateWebHostBuilder(args).Build();
             var logDB = @"Server=...";
             var connectionString = @"Data Source=(local); Initial Catalog=Test;User ID=sa;Password=Passwd@12;";
-            var tableName = "Timesheet";
+            var tableName = "Logs";
 
             var columnOption = new ColumnOptions();
             columnOption.Store.Remove(StandardColumn.MessageTemplate);
