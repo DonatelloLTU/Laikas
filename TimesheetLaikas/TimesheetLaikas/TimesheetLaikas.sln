@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{AC45BA6F
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5E0B7A7B-8475-424C-81A8-84BB76E03716}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject", "..\XUnitTestProject\XUnitTestProject.csproj", "{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
