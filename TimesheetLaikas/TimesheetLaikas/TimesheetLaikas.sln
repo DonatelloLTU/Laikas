@@ -12,7 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{AC45BA6F
 		nginx.conf = nginx.conf
 	EndProjectSection
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject1", "..\XUnitTestProject1\XUnitTestProject1.csproj", "{F24D3D0F-4D37-4AF3-9291-DD5C7457A043}"
+=======
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5E0B7A7B-8475-424C-81A8-84BB76E03716}"
+>>>>>>> parent of 4457507... Test
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,11 +39,14 @@ Global
 		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0B7A7B-8475-424C-81A8-84BB76E03716}.Release|Any CPU.Build.0 = Release|Any CPU
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC9E8D1-2844-4894-A34C-3D4A01EA0D77}.Release|Any CPU.Build.0 = Release|Any CPU
 >>>>>>> 44575071a579f5c10062fd56672c622f3deb16e2
+=======
+>>>>>>> parent of 4457507... Test
 =======
 >>>>>>> parent of 4457507... Test
 	EndGlobalSection
