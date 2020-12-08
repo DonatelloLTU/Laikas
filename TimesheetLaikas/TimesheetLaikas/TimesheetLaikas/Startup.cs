@@ -92,8 +92,8 @@ namespace TimesheetLaikas
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            SeedData.Initialize(context, userManager, roleManager).Wait();
 
+           
         }
     }
 }

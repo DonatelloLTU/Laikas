@@ -15,14 +15,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SerilogDemo": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:54613"
-    },
     "TimesheetLaikas": {
       "commandName": "Project",
       "launchBrowser": true,

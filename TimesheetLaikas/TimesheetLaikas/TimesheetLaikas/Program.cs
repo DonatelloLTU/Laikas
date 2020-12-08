@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+///using Serilog.Sinks.MSSqlServer;
 using Serilog.Formatting.Compact;
 using Serilog.Core;
 using TimesheetLaikas.Data;
