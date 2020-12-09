@@ -61,6 +61,10 @@ namespace TimesheetLaikas.Controllers
             _roleManager = roleManager;
         }
 
+        public TimesheetController()
+        {
+        }
+
 
         /// <summary>
         /// Indexes the specified sort order.

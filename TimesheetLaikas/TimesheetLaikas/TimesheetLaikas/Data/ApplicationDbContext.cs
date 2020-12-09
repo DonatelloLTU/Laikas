@@ -20,6 +20,7 @@ using TimesheetLaikas.Models;
 
 namespace TimesheetLaikas.Data
 {
+
     /// <summary>
     /// Class ApplicationDbContext.
     /// Implements the <see cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{TimesheetLaikas.Models.Employee, TimesheetLaikas.Models.Roles, System.String}" />

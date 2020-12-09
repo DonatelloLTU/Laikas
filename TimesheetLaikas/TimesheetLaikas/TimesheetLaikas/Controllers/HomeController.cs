@@ -70,5 +70,15 @@ namespace TimesheetLaikas.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Index(object model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IActionResult Index(object models)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
