@@ -10,7 +10,7 @@ using Xunit;
 
 namespace TimesheetLaikas.Controllers
 {
-    public class TimesheetControllerTests
+    public class TimesheetsControllerTests
     {
         private MockRepository mockRepository;
 
@@ -18,7 +18,7 @@ namespace TimesheetLaikas.Controllers
         private Mock<UserManager<Employee>> mockUserManager;
         private Mock<RoleManager<Roles>> mockRoleManager;
 
-        public TimesheetControllerTests()
+        public TimesheetsControllerTests()
         {
             this.mockRepository = new MockRepository(MockBehavior.Strict);
 
@@ -27,9 +27,9 @@ namespace TimesheetLaikas.Controllers
             this.mockRoleManager = this.mockRepository.Create<RoleManager<Roles>>();
         }
 
-        private TimesheetController CreateTimesheetController()
+        private TimesheetsController CreateTimesheetsController()
         {
-            return new TimesheetController(
+            return new TimesheetsController(
                 this.mockApplicationDbContext.Object,
                 this.mockUserManager.Object,
                 this.mockRoleManager.Object);
@@ -39,12 +39,10 @@ namespace TimesheetLaikas.Controllers
         public async Task Index_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
-            string sortOrder = null;
+            var timesheetsController = this.CreateTimesheetsController();
 
             // Act
-            var result = await timesheetController.Index(
-                sortOrder);
+            var result = await timesheetsController.Index();
 
             // Assert
             Assert.True(false);
@@ -55,10 +53,24 @@ namespace TimesheetLaikas.Controllers
         public async Task ViewTimesheets_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
 
             // Act
-            var result = await timesheetController.ViewTimesheets();
+            var result = await timesheetsController.ViewTimesheets();
+
+            // Assert
+            Assert.True(false);
+            this.mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public async Task ViewDepartmentTimesheets_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var timesheetsController = this.CreateTimesheetsController();
+
+            // Act
+            var result = await timesheetsController.ViewDepartmentTimesheets();
 
             // Assert
             Assert.True(false);
@@ -69,11 +81,11 @@ namespace TimesheetLaikas.Controllers
         public async Task Details_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             int? id = null;
 
             // Act
-            var result = await timesheetController.Details(
+            var result = await timesheetsController.Details(
                 id);
 
             // Assert
@@ -85,10 +97,10 @@ namespace TimesheetLaikas.Controllers
         public void TimePunch_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
 
             // Act
-            var result = timesheetController.TimePunch();
+            var result = timesheetsController.TimePunch();
 
             // Assert
             Assert.True(false);
@@ -99,11 +111,11 @@ namespace TimesheetLaikas.Controllers
         public async Task PunchIn_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             TimesheetViewModel model = null;
 
             // Act
-            var result = await timesheetController.PunchIn(
+            var result = await timesheetsController.PunchIn(
                 model);
 
             // Assert
@@ -115,11 +127,11 @@ namespace TimesheetLaikas.Controllers
         public async Task PunchOut_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             Timesheet timesheet = null;
 
             // Act
-            var result = await timesheetController.PunchOut(
+            var result = await timesheetsController.PunchOut(
                 timesheet);
 
             // Assert
@@ -131,10 +143,10 @@ namespace TimesheetLaikas.Controllers
         public void Create_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
 
             // Act
-            var result = timesheetController.Create();
+            var result = timesheetsController.Create();
 
             // Assert
             Assert.True(false);
@@ -145,11 +157,11 @@ namespace TimesheetLaikas.Controllers
         public async Task Create_StateUnderTest_ExpectedBehavior1()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             TimesheetViewModel model = null;
 
             // Act
-            var result = await timesheetController.Create(
+            var result = await timesheetsController.Create(
                 model);
 
             // Assert
@@ -161,11 +173,11 @@ namespace TimesheetLaikas.Controllers
         public async Task Edit_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             int? id = null;
 
             // Act
-            var result = await timesheetController.Edit(
+            var result = await timesheetsController.Edit(
                 id);
 
             // Assert
@@ -177,12 +189,12 @@ namespace TimesheetLaikas.Controllers
         public async Task Edit_StateUnderTest_ExpectedBehavior1()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             int id = 0;
             TimesheetViewModel timesheet = null;
 
             // Act
-            var result = await timesheetController.Edit(
+            var result = await timesheetsController.Edit(
                 id,
                 timesheet);
 
@@ -195,11 +207,11 @@ namespace TimesheetLaikas.Controllers
         public async Task Delete_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             int? id = null;
 
             // Act
-            var result = await timesheetController.Delete(
+            var result = await timesheetsController.Delete(
                 id);
 
             // Assert
@@ -211,11 +223,11 @@ namespace TimesheetLaikas.Controllers
         public async Task DeleteConfirmed_StateUnderTest_ExpectedBehavior()
         {
             // Arrange
-            var timesheetController = this.CreateTimesheetController();
+            var timesheetsController = this.CreateTimesheetsController();
             int id = 0;
 
             // Act
-            var result = await timesheetController.DeleteConfirmed(
+            var result = await timesheetsController.DeleteConfirmed(
                 id);
 
             // Assert

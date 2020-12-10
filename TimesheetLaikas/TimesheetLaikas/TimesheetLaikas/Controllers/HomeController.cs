@@ -76,9 +76,5 @@ namespace TimesheetLaikas.Controllers
             throw new NotImplementedException();
         }
 
-        public IActionResult Index(object models)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
